@@ -1,4 +1,5 @@
 import 'package:estaciona_facil/assets/app_colors.dart';
+import 'package:estaciona_facil/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 class login_page extends StatefulWidget {
@@ -104,7 +105,16 @@ class _MyHomePageState extends State<login_page> {
                       ),
 
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                              builder:
+                                  (context) => home_page(title: 'Home Page'),
+                            ),
+                            (Route<dynamic> route) => false,
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.corBotao,
                           foregroundColor: Colors.white,
