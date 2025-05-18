@@ -65,7 +65,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       context,
                       MaterialPageRoute(
                         builder:
-                            (context) => const register_page(title: 'Login'),
+                            (context) =>
+                                const register_page(title: 'Cadastre-se'),
                       ),
                     );
                   },
