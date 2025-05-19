@@ -1,4 +1,5 @@
 import 'package:estaciona_facil/assets/app_colors.dart';
+import 'package:estaciona_facil/pages/account_page.dart';
 import 'package:estaciona_facil/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -59,15 +60,69 @@ class _MyHomePageState extends State<home_page> {
           spacing: 12,
           children: [
             // Avatar
-            const CircleAvatar(
+            CircleAvatar(
               radius: 24,
               backgroundColor: Colors.white,
-              child: Icon(
-                Icons.person,
-                color: AppColors.corPrincipal,
-                size: 28,
+              child: IconButton(
+                icon: Icon(
+                  Icons.person,
+                  color: AppColors.corPrincipal,
+                  size: 28,
+                ),
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(24),
+                      ),
+                    ),
+                    builder:
+                        (context) => Container(
+                          padding: EdgeInsets.all(16),
+                          height: 300,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Center(
+                                child: Text(
+                                  'Informações do Usuário',
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 16),
+                              ListTile(
+                                leading: Icon(Icons.password),
+                                title: Text('Alterar Senha'),
+                              ),
+                              ListTile(
+                                leading: Icon(Icons.edit),
+                                title: Text('Editar Dados'),
+                              ),
+                              ListTile(
+                                leading: Icon(Icons.delete),
+                                title: Text('Apagar Conta'),
+                              ),
+                              Spacer(),
+                              Center(
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pop(context); // fecha o modal
+                                  },
+                                  child: Text('Fechar'),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                  );
+                },
               ),
             ),
+
             // Campo de busca
             Expanded(
               child: Container(
