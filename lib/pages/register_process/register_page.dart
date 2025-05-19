@@ -1,7 +1,6 @@
 import 'package:estaciona_facil/assets/app_colors.dart';
 import 'package:estaciona_facil/pages/register_process/auth_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
 final cpfMask = MaskTextInputFormatter(

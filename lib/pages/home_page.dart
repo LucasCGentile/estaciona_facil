@@ -94,7 +94,7 @@ class _MyHomePageState extends State<home_page> {
 
       //Area de Conteudo Central
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 22.0),
+        padding: EdgeInsets.symmetric(horizontal: 1.0, vertical: 22.0),
         child: Center(
           child: Column(
             spacing: 24,
