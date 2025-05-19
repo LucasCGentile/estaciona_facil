@@ -1,35 +1,11 @@
 import 'package:estaciona_facil/assets/app_colors.dart';
-import 'package:estaciona_facil/pages/account_page.dart';
-import 'package:estaciona_facil/pages/login_page.dart';
+import 'package:estaciona_facil/assets/avatar_modal.dart';
+import 'package:estaciona_facil/assets/bottom_navigation.dart';
+import 'package:estaciona_facil/assets/menu_modal.dart';
+import 'package:estaciona_facil/pages/ticket_page.dart';
+import 'package:estaciona_facil/assets/app_bar.dart';
+import 'package:estaciona_facil/pages/vehicle_page.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-//Adicional do Bottom Navigator
-Widget buildNavItem({
-  required IconData icon,
-  required String label,
-  required VoidCallback onPressed,
-}) {
-  return Column(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      IconButton(
-        icon: Icon(icon),
-        color: Colors.white,
-        iconSize: 38, // Aumenta o tamanho do ícone
-        onPressed: onPressed,
-      ),
-      Text(
-        label,
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 13,
-          fontWeight: FontWeight.w500,
-        ),
-      ),
-    ],
-  );
-}
 
 //Oculta/Mostra Saldo
 bool mostrarSaldo = true;
@@ -48,105 +24,18 @@ class _MyHomePageState extends State<home_page> {
   Widget build(BuildContext context) {
     //Area Scalfold
     return Scaffold(
-      //App Bar para o topo
-      appBar: AppBar(
-        backgroundColor: AppColors.corPrincipal,
-        automaticallyImplyLeading: false,
-        toolbarHeight: 75,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
-        ),
-        title: Row(
-          spacing: 12,
-          children: [
-            // Avatar
-            CircleAvatar(
-              radius: 24,
-              backgroundColor: Colors.white,
-              child: IconButton(
-                icon: Icon(
-                  Icons.person,
-                  color: AppColors.corPrincipal,
-                  size: 28,
-                ),
-                onPressed: () {
-                  showModalBottomSheet(
-                    context: context,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.vertical(
-                        top: Radius.circular(24),
-                      ),
-                    ),
-                    builder:
-                        (context) => Container(
-                          padding: EdgeInsets.all(16),
-                          height: 300,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Center(
-                                child: Text(
-                                  'Informações do Usuário',
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                              SizedBox(height: 16),
-                              ListTile(
-                                leading: Icon(Icons.password),
-                                title: Text('Alterar Senha'),
-                              ),
-                              ListTile(
-                                leading: Icon(Icons.edit),
-                                title: Text('Editar Dados'),
-                              ),
-                              ListTile(
-                                leading: Icon(Icons.delete),
-                                title: Text('Apagar Conta'),
-                              ),
-                              Spacer(),
-                              Center(
-                                child: ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.pop(context); // fecha o modal
-                                  },
-                                  child: Text('Fechar'),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                  );
-                },
-              ),
+      appBar: app_bar(
+        onAvatarTap: () {
+          showModalBottomSheet(
+            context: context,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
             ),
-
-            // Campo de busca
-            Expanded(
-              child: Container(
-                height: 45,
-                decoration: BoxDecoration(
-                  color: Colors.white70,
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child: TextField(
-                  style: const TextStyle(color: Colors.black),
-                  decoration: InputDecoration(
-                    hintText: 'O que você procura ?',
-                    hintStyle: const TextStyle(color: Colors.black),
-                    prefixIcon: const Icon(Icons.search, color: Colors.black),
-                    border: InputBorder.none,
-                    contentPadding: const EdgeInsets.symmetric(vertical: 12),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+            builder: (_) => const avatar_modal(),
+          );
+        },
+        hintText: 'Buscar Ticket...',
       ),
-
       //Area de Conteudo Central
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 1.0, vertical: 22.0),
@@ -448,169 +337,42 @@ class _MyHomePageState extends State<home_page> {
         ),
       ),
 
-      //Bottom Navigator
-      bottomNavigationBar: Container(
-        height: 110,
-        decoration: BoxDecoration(
-          color: AppColors.corPrincipal,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(24),
-            topRight: Radius.circular(24),
-          ),
-          boxShadow: [BoxShadow(color: Colors.black26, blurRadius: 8)],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            buildNavItem(icon: Icons.home, label: 'Home', onPressed: () {}),
-            buildNavItem(
-              icon: Icons.account_balance_wallet,
-              label: 'Saldo',
-              onPressed: () {},
-            ),
-            buildNavItem(
-              icon: Icons.directions_car,
-              label: 'Veículos',
-              onPressed: () {},
-            ),
-
-            // Botão Menu que abre modal bottom sheet
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.menu, color: Colors.white, size: 32),
-                  onPressed: () {
-                    showModalBottomSheet(
-                      context: context,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.vertical(
-                          top: Radius.circular(24),
-                        ),
-                      ),
-                      isScrollControlled: true,
-                      builder:
-                          (context) => Container(
-                            height: MediaQuery.of(context).size.height * 0.7,
-                            padding: EdgeInsets.all(16),
-                            child: Column(
-                              spacing: 8,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // Avatar + nome
-                                Center(
-                                  child: Column(
-                                    children: [
-                                      CircleAvatar(
-                                        radius: 40,
-                                        backgroundColor: Colors.deepPurple,
-                                        child: Icon(
-                                          Icons.person,
-                                          size: 40,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                      Text(
-                                        'Lucas Silva',
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-
-                                // Itens do menu
-                                ListTile(
-                                  leading: Icon(Icons.wallet),
-                                  title: Text('Comprar Tickets'),
-                                  onTap: () {},
-                                ),
-                                ListTile(
-                                  leading: Icon(Icons.history),
-                                  title: Text('Histórico de Uso'),
-                                  onTap: () {},
-                                ),
-                                ListTile(
-                                  leading: Icon(Icons.account_balance),
-                                  title: Text('Extrato'),
-                                  onTap: () {},
-                                ),
-                                ListTile(
-                                  leading: Icon(Icons.account_box),
-                                  title: Text('Conta'),
-                                  onTap: () {},
-                                ),
-                                ListTile(
-                                  leading: Icon(Icons.settings),
-                                  title: Text('Configurações'),
-                                  onTap: () {},
-                                ),
-                                ListTile(
-                                  leading: Icon(Icons.text_snippet),
-                                  title: Text('Termos de Uso'),
-                                  onTap: () {},
-                                ),
-
-                                Spacer(), // empurra o botão para baixo
-                                // Botão Sair
-                                Center(
-                                  child: ElevatedButton.icon(
-                                    onPressed: () {
-                                      Navigator.pop(context); // Fecha o modal
-
-                                      // Aguarda o modal fechar antes de navegar
-                                      Future.delayed(
-                                        Duration(milliseconds: 100),
-                                        () {
-                                          Navigator.pushAndRemoveUntil(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder:
-                                                  (context) => login_page(
-                                                    title: 'Home Page',
-                                                  ),
-                                            ),
-                                            (Route<dynamic> route) => false,
-                                          );
-                                        },
-                                      );
-                                    },
-                                    icon: Icon(Icons.logout),
-                                    label: Text('Sair do Aplicativo'),
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.red[600],
-                                      foregroundColor: Colors.white,
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: 24,
-                                        vertical: 12,
-                                      ),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                      textStyle: TextStyle(fontSize: 16),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                    );
-                  },
+      //Widget Bottom Navigation
+      bottomNavigationBar: bottom_navigation(
+        currentIndex: 0,
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              // Já está na Home, pode só ignorar
+              break;
+            case 1:
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const ticket_page(title: 'Comprar Ticket'),
                 ),
-                Text(
-                  'Menu',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                  ),
+              );
+              break;
+            case 2:
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const vehicle_page(title: 'Meus Veiculos'),
                 ),
-              ],
-            ),
-          ],
-        ),
+              );
+              break;
+            case 3:
+              showModalBottomSheet(
+                context: context,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+                ),
+                isScrollControlled: true,
+                builder: (_) => menu_modal(), // seu widget modal
+              );
+              break;
+          }
+        },
       ),
     );
   }
