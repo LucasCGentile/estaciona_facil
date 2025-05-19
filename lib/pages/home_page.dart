@@ -1,10 +1,4 @@
 import 'package:estaciona_facil/assets/app_colors.dart';
-import 'package:estaciona_facil/assets/avatar_modal.dart';
-import 'package:estaciona_facil/assets/bottom_navigation.dart';
-import 'package:estaciona_facil/assets/menu_modal.dart';
-import 'package:estaciona_facil/pages/ticket_page.dart';
-import 'package:estaciona_facil/assets/app_bar.dart';
-import 'package:estaciona_facil/pages/vehicle_page.dart';
 import 'package:flutter/material.dart';
 
 //Oculta/Mostra Saldo
@@ -24,18 +18,6 @@ class _MyHomePageState extends State<home_page> {
   Widget build(BuildContext context) {
     //Area Scalfold
     return Scaffold(
-      appBar: app_bar(
-        onAvatarTap: () {
-          showModalBottomSheet(
-            context: context,
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-            ),
-            builder: (_) => const avatar_modal(),
-          );
-        },
-        hintText: 'Buscar Ticket...',
-      ),
       //Area de Conteudo Central
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 1.0, vertical: 22.0),
@@ -335,44 +317,6 @@ class _MyHomePageState extends State<home_page> {
             ],
           ),
         ),
-      ),
-
-      //Widget Bottom Navigation
-      bottomNavigationBar: bottom_navigation(
-        currentIndex: 0,
-        onTap: (index) {
-          switch (index) {
-            case 0:
-              // Já está na Home, pode só ignorar
-              break;
-            case 1:
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => const ticket_page(title: 'Comprar Ticket'),
-                ),
-              );
-              break;
-            case 2:
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => const vehicle_page(title: 'Meus Veiculos'),
-                ),
-              );
-              break;
-            case 3:
-              showModalBottomSheet(
-                context: context,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-                ),
-                isScrollControlled: true,
-                builder: (_) => menu_modal(), // seu widget modal
-              );
-              break;
-          }
-        },
       ),
     );
   }

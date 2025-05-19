@@ -68,32 +68,35 @@ class menu_modal extends StatelessWidget {
 
           // Botão de sair
           Center(
-            child: ElevatedButton.icon(
-              onPressed: () {
-                Navigator.pop(context); // Fecha o modal
-                Future.delayed(const Duration(milliseconds: 100), () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const login_page(title: 'Login'),
-                    ),
-                    (route) => false,
-                  );
-                });
-              },
-              icon: const Icon(Icons.logout),
-              label: const Text('Sair do Aplicativo'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red[600],
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
-                  vertical: 12,
+            child: Padding(
+              padding: EdgeInsets.only(bottom: 26.0),
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.pop(context); // Fecha o modal
+                  Future.delayed(const Duration(milliseconds: 100), () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const login_page(title: 'Login'),
+                      ),
+                      (route) => false,
+                    );
+                  });
+                },
+                icon: const Icon(Icons.logout),
+                label: const Text('Sair do Aplicativo'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red[600],
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 12,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  textStyle: const TextStyle(fontSize: 16),
                 ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                textStyle: const TextStyle(fontSize: 16),
               ),
             ),
           ),
