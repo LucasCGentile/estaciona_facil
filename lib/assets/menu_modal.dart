@@ -1,8 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:estaciona_facil/pages/login_page.dart';
 
-class menu_modal extends StatelessWidget {
-  const menu_modal({super.key});
+class MenuModal extends StatelessWidget {
+  final void Function(int) onPageSelected;
+
+  const MenuModal({super.key, required this.onPageSelected});
+
+  Widget buildMenuButton({
+    required BuildContext context,
+    required IconData icon,
+    required String label,
+    required int pageIndex,
+  }) {
+    return InkWell(
+      onTap: () {
+        Navigator.pop(context); // Fecha o modal primeiro
+        Future.delayed(const Duration(milliseconds: 150), () {
+          onPageSelected(pageIndex);
+        });
+      },
+      borderRadius: BorderRadius.circular(12),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
+        child: Row(
+          children: [
+            Icon(icon, color: Colors.black87),
+            const SizedBox(width: 16),
+            Text(label, style: const TextStyle(fontSize: 16)),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,17 +41,17 @@ class menu_modal extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Avatar e nome do usuário
+          // Avatar e nome
           Center(
             child: Column(
-              children: [
-                const CircleAvatar(
+              children: const [
+                CircleAvatar(
                   radius: 40,
                   backgroundColor: Colors.deepPurple,
                   child: Icon(Icons.person, size: 40, color: Colors.white),
                 ),
-                const SizedBox(height: 8),
-                const Text(
+                SizedBox(height: 8),
+                Text(
                   'Lucas Silva',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
@@ -32,48 +61,53 @@ class menu_modal extends StatelessWidget {
 
           const SizedBox(height: 20),
 
-          // Lista de opções
-          ListTile(
-            leading: const Icon(Icons.wallet),
-            title: const Text('Comprar Tickets'),
-            onTap: () {},
+          // Botões, agora usando índices da MainScreen
+          buildMenuButton(
+            context: context,
+            icon: Icons.wallet,
+            label: 'Comprar Tickets',
+            pageIndex: 1, // índice da página TicketPage
           ),
-          ListTile(
-            leading: const Icon(Icons.history),
-            title: const Text('Histórico de Uso'),
-            onTap: () {},
+          buildMenuButton(
+            context: context,
+            icon: Icons.history,
+            label: 'Histórico de Uso',
+            pageIndex: 3,
           ),
-          ListTile(
-            leading: const Icon(Icons.account_balance),
-            title: const Text('Extrato'),
-            onTap: () {},
+          buildMenuButton(
+            context: context,
+            icon: Icons.account_balance,
+            label: 'Extrato',
+            pageIndex: 4,
           ),
-          ListTile(
-            leading: const Icon(Icons.account_box),
-            title: const Text('Conta'),
-            onTap: () {},
+          buildMenuButton(
+            context: context,
+            icon: Icons.account_box,
+            label: 'Conta',
+            pageIndex: 5,
           ),
-          ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text('Configurações'),
-            onTap: () {},
+          buildMenuButton(
+            context: context,
+            icon: Icons.settings,
+            label: 'Configurações',
+            pageIndex: 6,
           ),
-          ListTile(
-            leading: const Icon(Icons.text_snippet),
-            title: const Text('Termos de Uso'),
-            onTap: () {},
+          buildMenuButton(
+            context: context,
+            icon: Icons.text_snippet,
+            label: 'Termos de Uso',
+            pageIndex: 7,
           ),
 
           const Spacer(),
 
-          // Botão de sair
           Center(
             child: Padding(
-              padding: EdgeInsets.only(bottom: 26.0),
+              padding: const EdgeInsets.only(bottom: 26.0),
               child: ElevatedButton.icon(
                 onPressed: () {
-                  Navigator.pop(context); // Fecha o modal
-                  Future.delayed(const Duration(milliseconds: 100), () {
+                  Navigator.pop(context);
+                  Future.delayed(const Duration(milliseconds: 150), () {
                     Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(

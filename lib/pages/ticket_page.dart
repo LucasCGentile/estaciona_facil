@@ -12,6 +12,6 @@ class TicketPage extends StatefulWidget {
 class _MyHomePageState extends State<TicketPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text('pagina tickets')));
+    return Scaffold(body: Center(child: Text('pagina comprar ticket')));
   }
 }

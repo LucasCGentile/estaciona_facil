@@ -1,7 +1,12 @@
 import 'package:estaciona_facil/assets/bottom_navigation.dart';
 import 'package:estaciona_facil/assets/menu_modal.dart';
+import 'package:estaciona_facil/pages/config_page.dart';
 import 'package:estaciona_facil/pages/home_page.dart';
+import 'package:estaciona_facil/pages/my_account.dart';
+import 'package:estaciona_facil/pages/receipt_page.dart';
+import 'package:estaciona_facil/pages/terms_page.dart';
 import 'package:estaciona_facil/pages/ticket_page.dart';
+import 'package:estaciona_facil/pages/use_page.dart';
 import 'package:estaciona_facil/pages/vehicle_page.dart';
 import 'package:flutter/material.dart';
 import 'package:estaciona_facil/assets/app_colors.dart';
@@ -115,22 +120,38 @@ class MainScreenState extends State<MainScreen> {
     });
   }
 
+  static MainScreenState? of(BuildContext context) {
+    return context.findAncestorStateOfType<MainScreenState>();
+  }
+
   final List<Widget> _pages = [
-    const HomePage(title: 'Página Inicial'),
-    const TicketPage(title: 'Comprar Ticket'),
-    const VehiclePage(title: 'Meus Veículos'),
+    const HomePage(title: 'Página Inicial'), // 0
+    const TicketPage(title: 'Comprar Ticket'), // 1
+    const VehiclePage(title: 'Meus Veículos'), // 2
+    const UsePage(title: 'Histórico de Uso'), // 3
+    const ReceiptPage(title: 'Extrato'), // 4
+    const MyAccount(title: 'Minha Conta'), // 5
+    const ConfigPage(title: 'Configurações'), // 6
+    const TermsPage(title: 'Termos de Uso'), // 7
   ];
 
   void _onNavTap(int index) {
     if (index == 3) {
-      // Abre o modal menu
+      // ou o índice do menu, conforme seu BottomNavigation
       showModalBottomSheet(
         context: context,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
         ),
         isScrollControlled: true,
-        builder: (_) => menu_modal(),
+        builder:
+            (_) => MenuModal(
+              onPageSelected: (int pageIndex) {
+                setState(() {
+                  _currentIndex = pageIndex;
+                });
+              },
+            ),
       );
     } else {
       setState(() {
