@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       title: 'Estaciona Facil - eFacil Sao Roque',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(scaffoldBackgroundColor: const Color(0xFFF5EEEE)),
-      home: const first_page(title: 'Estaciona Facil - eFacil Sao Roque'),
+      home: const FirstPage(title: 'Estaciona Facil - eFacil Sao Roque'),
     );
   }
 }

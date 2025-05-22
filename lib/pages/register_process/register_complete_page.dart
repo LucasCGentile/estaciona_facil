@@ -2,16 +2,16 @@ import 'package:estaciona_facil/assets/app_colors.dart';
 import 'package:estaciona_facil/pages/login_page.dart';
 import 'package:flutter/material.dart';
 
-class register_complete_page extends StatefulWidget {
-  const register_complete_page({super.key, required this.title});
+class RegisterCompletePage extends StatefulWidget {
+  const RegisterCompletePage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<register_complete_page> createState() => _MyHomePageState();
+  State<RegisterCompletePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<register_complete_page> {
+class _MyHomePageState extends State<RegisterCompletePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

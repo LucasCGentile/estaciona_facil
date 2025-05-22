@@ -109,7 +109,7 @@ class _MyHomePageState extends State<login_page> {
                           Navigator.pushAndRemoveUntil(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => main_screen(),
+                              builder: (context) => MainScreen(),
                             ),
                             (Route<dynamic> route) => false,
                           );

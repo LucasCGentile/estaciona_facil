@@ -7,11 +7,11 @@ class app_bar extends StatelessWidget implements PreferredSizeWidget {
   final String hintText;
 
   const app_bar({
-    Key? key,
+    super.key,
     required this.onAvatarTap,
     this.searchController,
     this.hintText = 'O que você procura ?',
-  }) : super(key: key);
+  });
 
   @override
   Size get preferredSize => const Size.fromHeight(75);

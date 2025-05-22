@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:estaciona_facil/pages/login_page.dart';
 import 'package:estaciona_facil/pages/register_process/register_page.dart';
 
-class first_page extends StatefulWidget {
-  const first_page({super.key, required this.title});
+class FirstPage extends StatefulWidget {
+  const FirstPage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<first_page> createState() => _MyHomePageState();
+  State<FirstPage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<first_page> {
+class _MyHomePageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

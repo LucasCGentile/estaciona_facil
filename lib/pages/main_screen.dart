@@ -99,20 +99,26 @@ PreferredSizeWidget customAppBar(BuildContext context) {
 }
 
 // MainScreen que mantém AppBar e BottomNavigation fixos e muda só o body
-class main_screen extends StatefulWidget {
-  const main_screen({Key? key}) : super(key: key);
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
 
   @override
-  State<main_screen> createState() => _MainScreenState();
+  State<MainScreen> createState() => MainScreenState();
 }
 
-class _MainScreenState extends State<main_screen> {
+class MainScreenState extends State<MainScreen> {
   int _currentIndex = 0;
 
+  void setCurrentIndex(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   final List<Widget> _pages = [
-    const home_page(title: 'Página Inicial'),
-    const ticket_page(title: 'Comprar Ticket'),
-    const vehicle_page(title: 'Meus Veículos'),
+    const HomePage(title: 'Página Inicial'),
+    const TicketPage(title: 'Comprar Ticket'),
+    const VehiclePage(title: 'Meus Veículos'),
   ];
 
   void _onNavTap(int index) {
@@ -136,9 +142,12 @@ class _MainScreenState extends State<main_screen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //AppBar
       appBar: customAppBar(context),
+      //Area Body
       body: _pages[_currentIndex],
-      bottomNavigationBar: bottom_navigation(
+      //Bottom Navigation
+      bottomNavigationBar: BottomNavigation(
         currentIndex: _currentIndex,
         onTap: _onNavTap,
       ),

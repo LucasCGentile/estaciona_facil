@@ -3,16 +3,16 @@ import 'package:estaciona_facil/pages/register_process/register_complete_page.da
 import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
-class auth_page extends StatefulWidget {
-  const auth_page({super.key, required this.title});
+class AuthPage extends StatefulWidget {
+  const AuthPage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<auth_page> createState() => _MyHomePageState();
+  State<AuthPage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<auth_page> {
+class _MyHomePageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -109,7 +109,7 @@ class _MyHomePageState extends State<auth_page> {
                           context,
                           MaterialPageRoute(
                             builder:
-                                (context) => register_complete_page(
+                                (context) => RegisterCompletePage(
                                   title: 'Cadastro Finalziado',
                                 ),
                           ),

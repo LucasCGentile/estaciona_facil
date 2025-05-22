@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 //Oculta/Mostra Saldo
 bool mostrarSaldo = true;
 
-class home_page extends StatefulWidget {
-  const home_page({super.key, required this.title});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<home_page> createState() => _MyHomePageState();
+  State<HomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<home_page> {
+class _MyHomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     //Area Scalfold

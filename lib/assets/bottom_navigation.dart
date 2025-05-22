@@ -3,15 +3,15 @@ import 'package:estaciona_facil/assets/app_colors.dart';
 
 typedef OnNavItemTap = void Function(int index);
 
-class bottom_navigation extends StatelessWidget {
+class BottomNavigation extends StatelessWidget {
   final int currentIndex;
   final OnNavItemTap onTap;
 
-  const bottom_navigation({
-    Key? key,
+  const BottomNavigation({
+    super.key,
     required this.currentIndex,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   Widget buildNavItem({
     required IconData icon,

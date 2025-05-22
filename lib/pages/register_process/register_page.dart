@@ -194,7 +194,7 @@ class _MyHomePageState extends State<register_page> {
                             MaterialPageRoute(
                               builder:
                                   (context) =>
-                                      const auth_page(title: 'Authentication'),
+                                      const AuthPage(title: 'Authentication'),
                             ),
                           );
                         },

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class avatar_modal extends StatelessWidget {
-  const avatar_modal({super.key});
+class AvatarModal extends StatelessWidget {
+  const AvatarModal({super.key});
 
   @override
   Widget build(BuildContext context) {
