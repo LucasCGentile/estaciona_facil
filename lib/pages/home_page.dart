@@ -114,7 +114,7 @@ class _MyHomePageState extends State<HomePage> {
                     ],
                   ),
                   Text(
-                    mostrarSaldo ? 'R\$ 24,67' : '••••••••',
+                    mostrarSaldo ? 'R\$ 24,00' : '••••••••',
                     style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -132,8 +132,8 @@ class _MyHomePageState extends State<HomePage> {
               child: Row(
                 children: [
                   _botaoAcao(
-                    icon: Icons.confirmation_num,
-                    label: 'Comprar Cupom',
+                    icon: Icons.no_crash,
+                    label: 'Estacionar Agora',
                     onPressed: () {},
                   ),
 
