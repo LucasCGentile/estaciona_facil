@@ -20,6 +20,46 @@ class _VehiclePageState extends State<VehiclePage> {
     });
   }
 
+  void _showConfirmVehicleDialog(String nome, String placa, BuildContext parentContext) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Confirme os dados do veículo'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Nome: $nome'),
+              const SizedBox(height: 8),
+              Text('Placa: $placa'),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Fecha o AlertDialog
+              },
+              child: const Text('Cancelar'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _addVehicle(nome, placa); // Adiciona o veículo
+                Navigator.of(context).pop(); // Fecha o AlertDialog
+                Navigator.of(parentContext).pop(); // Fecha o modal inferior
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.corPrincipal,
+                foregroundColor: Colors.white,
+              ),
+              child: const Text('Salvar'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   void _showAddVehicleModal() {
     final formKey = GlobalKey<FormState>();
     final TextEditingController nomeController = TextEditingController();
@@ -83,31 +123,9 @@ class _VehiclePageState extends State<VehiclePage> {
                   ElevatedButton(
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
-                        _addVehicle(
-                          nomeController.text.trim(),
-                          placaController.text.trim().toUpperCase(),
-                        );
-
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: const Text('Atenção'),
-                              content: const Text(
-                                'Não nos responsabilizamos por placas informadas incorretamente no aplicativo.',
-                              ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context); // Fecha o alerta
-                                    Navigator.pop(context); // Fecha o modal
-                                  },
-                                  child: const Text('Entendi'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
+                        String nome = nomeController.text.trim();
+                        String placa = placaController.text.trim().toUpperCase();
+                        _showConfirmVehicleDialog(nome, placa, context);
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -125,6 +143,33 @@ class _VehiclePageState extends State<VehiclePage> {
         );
       },
     );
+  }
+
+  void _showVehicleDeletedDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Sucesso'),
+          content: const Text('Veículo excluído com sucesso!'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Fecha o alerta
+              },
+              child: const Text('OK'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _deleteVehicle(Map<String, String> vehicle) {
+    setState(() {
+      _vehicles.remove(vehicle);
+    });
+    _showVehicleDeletedDialog();
   }
 
   @override
@@ -158,11 +203,7 @@ class _VehiclePageState extends State<VehiclePage> {
                   subtitle: Text('Placa: ${vehicle['placa']}'),
                   trailing: IconButton(
                     icon: const Icon(Icons.delete, color: Colors.red),
-                    onPressed: () {
-                      setState(() {
-                        _vehicles.remove(vehicle);
-                      });
-                    },
+                    onPressed: () => _deleteVehicle(vehicle),
                   ),
                 ),
               );

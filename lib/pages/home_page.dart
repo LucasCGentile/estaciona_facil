@@ -142,7 +142,9 @@ class _MyHomePageState extends State<HomePage> {
                   _botaoAcao(
                     icon: Icons.account_balance_wallet,
                     label: 'Adicionar Crédito',
-                    onPressed: () {},
+                    onPressed: () {
+                      MainScreenState.of(context)?.setCurrentIndex(1); // Redireciona para ConfigPage
+                    },
                   ),
 
                   SizedBox(width: 12),
