@@ -18,6 +18,7 @@ class _MyHomePageState extends State<HomePage> {
   Duration tempoRestante = Duration(minutes: 15);
   final Duration tempoTotalInicial = Duration(minutes: 15);
   Timer? timer;
+  bool notificacaoAtiva = true;
 
   @override
   void initState() {
@@ -152,19 +153,31 @@ class _MyHomePageState extends State<HomePage> {
                   _botaoAcao(
                     icon: Icons.no_crash,
                     label: 'Estacionar Agora',
-                    onPressed: () {},
+                    onPressed: () {
+                      MainScreenState.of(context)?.setCurrentIndex(
+                        2,
+                      ); // Página de Estacionar (por exemplo)
+                    },
                   ),
                   SizedBox(width: 12),
                   _botaoAcao(
                     icon: Icons.account_balance_wallet,
                     label: 'Adicionar Crédito',
-                    onPressed: () {},
+                    onPressed: () {
+                      MainScreenState.of(
+                        context,
+                      )?.setCurrentIndex(1); // TicketPage
+                    },
                   ),
                   SizedBox(width: 12),
                   _botaoAcao(
                     icon: Icons.history,
                     label: 'Histórico de Uso',
-                    onPressed: () {},
+                    onPressed: () {
+                      MainScreenState.of(
+                        context,
+                      )?.setCurrentIndex(3); // UsePage
+                    },
                   ),
                 ],
               ),
@@ -246,10 +259,13 @@ class _MyHomePageState extends State<HomePage> {
                                 style: TextStyle(fontSize: 14),
                               ),
                             ),
-                            Switch.adaptive(
-                              value: true,
+                            Switch(
+                              value: notificacaoAtiva,
+                              activeColor: AppColors.corPrincipal,
                               onChanged: (bool value) {
-                                // lógica de notificação
+                                setState(() {
+                                  notificacaoAtiva = value;
+                                });
                               },
                             ),
                           ],
