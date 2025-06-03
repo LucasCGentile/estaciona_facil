@@ -186,12 +186,8 @@ class _ConfigPageState extends State<ConfigPage> {
     List<DropdownMenuItem<String>> itensDropdown = [
       const DropdownMenuItem(value: 'PIX', child: Text('PIX')),
       const DropdownMenuItem(
-        value: 'Adicionar Cartão de Crédito',
-        child: Text('Adicionar Cartão de Crédito'),
-      ),
-      const DropdownMenuItem(
-        value: 'Adicionar Cartão de Débito',
-        child: Text('Adicionar Cartão de Débito'),
+        value: 'Lucas Silva **** **** **** 4673',
+        child: Text('Lucas Silva **** **** **** 4673'),
       ),
       const DropdownMenuItem(value: 'Boleto', child: Text('Boleto')),
     ];
