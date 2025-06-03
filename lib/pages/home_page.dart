@@ -8,7 +8,6 @@ bool mostrarSaldo = true;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
-
   final String title;
 
   @override
@@ -16,7 +15,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<HomePage> {
-  Duration tempoRestante = Duration(minutes: 30); // Tempo inicial (ex: 30 min)
+  Duration tempoRestante = Duration(minutes: 15);
+  final Duration tempoTotalInicial = Duration(minutes: 15);
   Timer? timer;
 
   @override
@@ -28,10 +28,10 @@ class _MyHomePageState extends State<HomePage> {
   Future<void> carregarTempo() async {
     final prefs = await SharedPreferences.getInstance();
     int segundosSalvos =
-        prefs.getInt('tempoRestante') ?? 1800; // 30 minutos padrão
-    setState(() {
-      tempoRestante = Duration(seconds: segundosSalvos);
-    });
+        prefs.getInt('tempoRestante') ?? tempoTotalInicial.inSeconds;
+    tempoRestante = Duration(
+      seconds: segundosSalvos.clamp(0, tempoTotalInicial.inSeconds),
+    );
     iniciarContador();
   }
 
@@ -57,8 +57,26 @@ class _MyHomePageState extends State<HomePage> {
     super.dispose();
   }
 
+  Color getProgressColor() {
+    double progress = tempoRestante.inSeconds / tempoTotalInicial.inSeconds;
+    if (progress > 0.5) return Colors.green;
+    if (progress > 0.2) return Colors.orange;
+    return Colors.red;
+  }
+
+  String formatarTempo(Duration duracao) {
+    int horas = duracao.inHours;
+    int minutos = duracao.inMinutes.remainder(60);
+    int segundos = duracao.inSeconds.remainder(60);
+    return '${horas.toString().padLeft(2, '0')}:'
+        '${minutos.toString().padLeft(2, '0')}:'
+        '${segundos.toString().padLeft(2, '0')}';
+  }
+
   @override
   Widget build(BuildContext context) {
+    double progresso = tempoRestante.inSeconds / tempoTotalInicial.inSeconds;
+
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 22.0),
@@ -76,9 +94,7 @@ class _MyHomePageState extends State<HomePage> {
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withValues(
-                      alpha: (0.7 * 255).round().toDouble(),
-                    ),
+                    color: const Color.fromARGB(77, 0, 0, 0),
                     blurRadius: 8.0,
                     offset: Offset(0, 4),
                   ),
@@ -138,17 +154,13 @@ class _MyHomePageState extends State<HomePage> {
                     label: 'Estacionar Agora',
                     onPressed: () {},
                   ),
-
                   SizedBox(width: 12),
-
                   _botaoAcao(
                     icon: Icons.account_balance_wallet,
                     label: 'Adicionar Crédito',
                     onPressed: () {},
                   ),
-
                   SizedBox(width: 12),
-
                   _botaoAcao(
                     icon: Icons.history,
                     label: 'Histórico de Uso',
@@ -158,74 +170,92 @@ class _MyHomePageState extends State<HomePage> {
               ),
             ),
 
-            // CONTADOR DE TEMPO
+            // CONTADOR CIRCULAR MENOR E À ESQUERDA
             Container(
-              padding: EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(20),
               margin: EdgeInsets.only(bottom: 20),
               decoration: BoxDecoration(
                 color: Colors.grey[200],
                 borderRadius: BorderRadius.circular(16),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Row(
                 children: [
-                  Text(
-                    'Tempo restante',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 12),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  // CÍRCULO À ESQUERDA
+                  Stack(
+                    alignment: Alignment.center,
                     children: [
+                      SizedBox(
+                        width: 120,
+                        height: 120,
+                        child: CircularProgressIndicator(
+                          value: progresso,
+                          strokeWidth: 10,
+                          valueColor: AlwaysStoppedAnimation(
+                            getProgressColor(),
+                          ),
+                          backgroundColor: Colors.grey[300],
+                        ),
+                      ),
                       Text(
-                        '${tempoRestante.inHours.toString().padLeft(2, '0')}:'
-                        '${tempoRestante.inMinutes.remainder(60).toString().padLeft(2, '0')}:'
-                        '${tempoRestante.inSeconds.remainder(60).toString().padLeft(2, '0')}',
+                        formatarTempo(tempoRestante),
                         style: TextStyle(
-                          fontSize: 32,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                        ),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {
-                          MainScreenState.of(
-                            context,
-                          )?.setCurrentIndex(1); // Redireciona para TicketPage
-                        },
-
-                        style: ElevatedButton.styleFrom(
-                          elevation: 8,
-                          shadowColor: Colors.black.withValues(
-                            alpha: (0.8 * 255).round().toDouble(),
-                          ),
-                          backgroundColor: AppColors.corPrincipal,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        child: Text(
-                          'Estender Tempo',
-                          style: TextStyle(color: Colors.white),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 12),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Ativar notificação de tempo limite',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      Switch.adaptive(
-                        value: true,
-                        onChanged: (bool value) {
-                          // Adicione aqui sua lógica de notificação
-                        },
-                      ),
-                    ],
+                  SizedBox(width: 20),
+                  // TEXTOS E BOTÕES À DIREITA
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Tempo restante',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 16),
+                        ElevatedButton(
+                          onPressed: () {
+                            MainScreenState.of(context)?.setCurrentIndex(1);
+                          },
+                          style: ElevatedButton.styleFrom(
+                            elevation: 8,
+                            shadowColor: const Color.fromARGB(204, 0, 0, 0),
+                            backgroundColor: AppColors.corPrincipal,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          child: Text(
+                            'Estender Tempo',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        SizedBox(height: 12),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                'Notificação de tempo limite',
+                                style: TextStyle(fontSize: 14),
+                              ),
+                            ),
+                            Switch.adaptive(
+                              value: true,
+                              onChanged: (bool value) {
+                                // lógica de notificação
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -277,9 +307,7 @@ class _MyHomePageState extends State<HomePage> {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         elevation: 8,
-        shadowColor: Colors.black.withValues(
-          alpha: (0.8 * 255).round().toDouble(),
-        ),
+        shadowColor: const Color.fromARGB(204, 0, 0, 0),
         backgroundColor: Colors.grey[400],
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),

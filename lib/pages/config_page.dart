@@ -1,3 +1,4 @@
+import 'package:estaciona_facil/assets/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -303,7 +304,7 @@ class _ConfigPageState extends State<ConfigPage> {
                       ),
                       Switch(
                         value: _notificacaoPromocao,
-                        activeColor: Colors.blue,
+                        activeColor: AppColors.corPrincipal,
                         onChanged: (val) {
                           setState(() {
                             _notificacaoPromocao = val;
@@ -323,7 +324,7 @@ class _ConfigPageState extends State<ConfigPage> {
                       ),
                       Switch(
                         value: _alertaTempoEstacionamento,
-                        activeColor: Colors.blue,
+                        activeColor: AppColors.corPrincipal,
                         onChanged: (val) {
                           setState(() {
                             _alertaTempoEstacionamento = val;
@@ -361,7 +362,7 @@ class _ConfigPageState extends State<ConfigPage> {
                       const Expanded(child: Text('Compras automáticas')),
                       Switch(
                         value: _compraAutomatica,
-                        activeColor: Colors.blue,
+                        activeColor: AppColors.corPrincipal,
                         onChanged: (val) {
                           setState(() {
                             _compraAutomatica = val;

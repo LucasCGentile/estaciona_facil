@@ -39,7 +39,7 @@ class _MyHomePageState extends State<TicketPage> {
                 children: [
                   CircleAvatar(
                     backgroundColor: AppColors.corPrincipal,
-                    child: Icon(Icons.add, color: Colors.white, size: 30),
+                    child: Icon(Icons.remove, color: Colors.white, size: 30),
                   ),
                   const SizedBox(width: 20),
                   Container(
@@ -64,7 +64,7 @@ class _MyHomePageState extends State<TicketPage> {
                   const SizedBox(width: 20),
                   CircleAvatar(
                     backgroundColor: AppColors.corPrincipal,
-                    child: Icon(Icons.remove, color: Colors.white, size: 30),
+                    child: Icon(Icons.add, color: Colors.white, size: 30),
                   ),
                 ],
               ),
@@ -83,19 +83,20 @@ class _MyHomePageState extends State<TicketPage> {
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Column(
-                  children: _opcoesPagamento.map((opcao) {
-                    return RadioListTile<String>(
-                      title: Text(opcao),
-                      value: opcao,
-                      groupValue: _metodoSelecionado,
-                      activeColor: Colors.purple,
-                      onChanged: (value) {
-                        setState(() {
-                          _metodoSelecionado = value!;
-                        });
-                      },
-                    );
-                  }).toList(),
+                  children:
+                      _opcoesPagamento.map((opcao) {
+                        return RadioListTile<String>(
+                          title: Text(opcao),
+                          value: opcao,
+                          groupValue: _metodoSelecionado,
+                          activeColor: Colors.purple,
+                          onChanged: (value) {
+                            setState(() {
+                              _metodoSelecionado = value!;
+                            });
+                          },
+                        );
+                      }).toList(),
                 ),
               ),
             ],

@@ -1,6 +1,6 @@
-import 'package:estaciona_facil/assets/app_colors.dart';
 import 'package:estaciona_facil/assets/bottom_navigation.dart';
 import 'package:estaciona_facil/assets/menu_modal.dart';
+import 'package:estaciona_facil/change_password.dart';
 import 'package:estaciona_facil/pages/config_page.dart';
 import 'package:estaciona_facil/pages/home_page.dart';
 import 'package:estaciona_facil/pages/my_account.dart';
@@ -10,6 +10,7 @@ import 'package:estaciona_facil/pages/ticket_page.dart';
 import 'package:estaciona_facil/pages/use_page.dart';
 import 'package:estaciona_facil/pages/vehicle_page.dart';
 import 'package:flutter/material.dart';
+import 'package:estaciona_facil/assets/app_colors.dart';
 
 // Seu AppBar modularizado
 PreferredSizeWidget customAppBar(BuildContext context) {
@@ -133,6 +134,7 @@ class MainScreenState extends State<MainScreen> {
     const MyAccount(title: 'Minha Conta'), // 5
     const ConfigPage(title: 'Configurações'), // 6
     const TermsPage(title: 'Termos de Uso'), // 7
+    const ChangePassword(title: 'Alterar Senha'), //8
   ];
 
   void _onNavTap(int index) {

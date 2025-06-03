@@ -13,7 +13,7 @@ class _MyHomePageState extends State<UsePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text('Pagfina para historico de tickets')),
+      body: Center(child: Text('Pagina para historico de tickets')),
     );
   }
 }
