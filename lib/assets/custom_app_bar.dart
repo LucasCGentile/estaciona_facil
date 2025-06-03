@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:estaciona_facil/assets/app_colors.dart';
 
-class app_bar extends StatelessWidget implements PreferredSizeWidget {
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final VoidCallback onAvatarTap;
   final TextEditingController? searchController;
   final String hintText;
 
-  const app_bar({
+  const CustomAppBar({
     super.key,
     required this.onAvatarTap,
     this.searchController,

@@ -108,10 +108,12 @@ class MenuModal extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                   Future.delayed(const Duration(milliseconds: 150), () {
+                    if (!context.mounted) return;
+
                     Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => const login_page(title: 'Login'),
+                        builder: (_) => const LoginPage(title: 'Login'),
                       ),
                       (route) => false,
                     );

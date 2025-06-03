@@ -13,16 +13,16 @@ final telefoneMask = MaskTextInputFormatter(
   filter: {"#": RegExp(r'[0-9]')},
 );
 
-class register_page extends StatefulWidget {
-  const register_page({super.key, required this.title});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key, required this.title});
 
   final String title;
 
   @override
-  State<register_page> createState() => _MyHomePageState();
+  State<RegisterPage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<register_page> {
+class _MyHomePageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

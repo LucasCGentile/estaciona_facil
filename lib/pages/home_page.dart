@@ -76,8 +76,10 @@ class _MyHomePageState extends State<HomePage> {
                 borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.7),
-                    blurRadius: 8,
+                    color: Colors.black.withValues(
+                      alpha: (0.7 * 255).round().toDouble(),
+                    ),
+                    blurRadius: 8.0,
                     offset: Offset(0, 4),
                   ),
                 ],
@@ -194,7 +196,9 @@ class _MyHomePageState extends State<HomePage> {
 
                         style: ElevatedButton.styleFrom(
                           elevation: 8,
-                          shadowColor: Colors.black.withOpacity(0.8),
+                          shadowColor: Colors.black.withValues(
+                            alpha: (0.8 * 255).round().toDouble(),
+                          ),
                           backgroundColor: AppColors.corPrincipal,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
@@ -273,7 +277,9 @@ class _MyHomePageState extends State<HomePage> {
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         elevation: 8,
-        shadowColor: Colors.black.withOpacity(0.6),
+        shadowColor: Colors.black.withValues(
+          alpha: (0.8 * 255).round().toDouble(),
+        ),
         backgroundColor: Colors.grey[400],
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
