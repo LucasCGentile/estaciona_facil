@@ -1,3 +1,4 @@
+import 'package:estaciona_facil/assets/app_colors.dart';
 import 'package:estaciona_facil/assets/bottom_navigation.dart';
 import 'package:estaciona_facil/assets/menu_modal.dart';
 import 'package:estaciona_facil/pages/config_page.dart';
@@ -9,7 +10,6 @@ import 'package:estaciona_facil/pages/ticket_page.dart';
 import 'package:estaciona_facil/pages/use_page.dart';
 import 'package:estaciona_facil/pages/vehicle_page.dart';
 import 'package:flutter/material.dart';
-import 'package:estaciona_facil/assets/app_colors.dart';
 
 // Seu AppBar modularizado
 PreferredSizeWidget customAppBar(BuildContext context) {
