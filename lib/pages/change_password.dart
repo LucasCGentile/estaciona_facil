@@ -1,3 +1,4 @@
+import 'package:estaciona_facil/assets/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
@@ -154,7 +155,16 @@ class _ChangePasswordState extends State<ChangePassword> {
               height: 48,
               child: ElevatedButton(
                 onPressed: _mostrarAnimacaoLottie,
-                child: const Text('Salvar'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.corPrincipal,
+                ),
+                child: const Text(
+                  'Salvar',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
           ],

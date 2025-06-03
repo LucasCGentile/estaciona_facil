@@ -112,10 +112,21 @@ class _VehiclePageState extends State<VehiclePage> {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.corPrincipal,
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 12,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
                     ),
                     child: const Text(
                       'Salvar Veículo',
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],
@@ -159,9 +170,38 @@ class _VehiclePageState extends State<VehiclePage> {
                   trailing: IconButton(
                     icon: const Icon(Icons.delete, color: Colors.red),
                     onPressed: () {
-                      setState(() {
-                        _vehicles.remove(vehicle);
-                      });
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: const Text('Confirmar Exclusão'),
+                            content: const Text(
+                              'Deseja realmente excluir este veículo?',
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () => Navigator.pop(context),
+                                child: const Text(
+                                  'Cancelar',
+                                  style: TextStyle(color: AppColors.corBotao),
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _vehicles.remove(vehicle);
+                                  });
+                                  Navigator.pop(context);
+                                },
+                                child: const Text(
+                                  'Excluir',
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                              ),
+                            ],
+                          );
+                        },
+                      );
                     },
                   ),
                 ),

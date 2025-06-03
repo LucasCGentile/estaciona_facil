@@ -1,3 +1,4 @@
+import 'package:estaciona_facil/assets/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class MyAccount extends StatefulWidget {
@@ -110,7 +111,16 @@ class _MyAccountState extends State<MyAccount> {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: _atualizarDados,
-              child: const Text('Atualizar'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.corPrincipal,
+              ),
+              child: const Text(
+                'Atualizar',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ],
         ),
