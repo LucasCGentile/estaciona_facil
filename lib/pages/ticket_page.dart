@@ -220,6 +220,17 @@ class _MyHomePageState extends State<TicketPage> {
               ),
             ),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.corPrincipal,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 10,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
               onPressed: () {
                 if (_formKeyCartao.currentState!.validate()) {
                   // Salvar cartão
@@ -239,7 +250,7 @@ class _MyHomePageState extends State<TicketPage> {
               },
               child: const Text(
                 'Salvar',
-                style: TextStyle(color: AppColors.corPrincipal),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
             ),
           ],
@@ -284,10 +295,21 @@ class _MyHomePageState extends State<TicketPage> {
               ),
               const SizedBox(height: 20),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.corPrincipal,
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 12,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
                 onPressed: () => Navigator.of(context).pop(),
                 child: const Text(
                   'Pagamento Realizado',
-                  style: TextStyle(color: AppColors.corPrincipal),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
             ],
@@ -335,7 +357,7 @@ class _MyHomePageState extends State<TicketPage> {
                     width: 150,
                     height: 150,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(12),
                       border: Border.all(width: 1),
                     ),
                     child: Center(
@@ -487,6 +509,18 @@ class _MyHomePageState extends State<TicketPage> {
 
               const SizedBox(height: 30),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      AppColors.corPrincipal, // Cor de fundo do botão
+                  foregroundColor: Colors.white, // Cor do texto e ícones
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 24,
+                    vertical: 12,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
                 onPressed: () {
                   if (_metodoSelecionado == 'Pix') {
                     _mostrarModalPix();
@@ -519,7 +553,7 @@ class _MyHomePageState extends State<TicketPage> {
                 },
                 child: const Text(
                   'Finalizar Compra',
-                  style: TextStyle(color: AppColors.corPrincipal),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
               ),
             ],
