@@ -1,6 +1,6 @@
 import 'package:estaciona_facil/assets/bottom_navigation.dart';
 import 'package:estaciona_facil/assets/menu_modal.dart';
-import 'package:estaciona_facil/change_password.dart';
+import 'package:estaciona_facil/pages/change_password.dart';
 import 'package:estaciona_facil/pages/config_page.dart';
 import 'package:estaciona_facil/pages/home_page.dart';
 import 'package:estaciona_facil/pages/my_account.dart';

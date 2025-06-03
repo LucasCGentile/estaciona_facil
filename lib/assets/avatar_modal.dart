@@ -1,4 +1,4 @@
-import 'package:estaciona_facil/change_password.dart';
+import 'package:estaciona_facil/pages/change_password.dart';
 import 'package:flutter/material.dart';
 import 'package:estaciona_facil/pages/my_account.dart';
 import 'package:estaciona_facil/pages/first_page.dart';

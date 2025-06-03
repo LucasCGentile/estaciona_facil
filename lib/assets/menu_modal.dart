@@ -98,6 +98,12 @@ class MenuModal extends StatelessWidget {
             label: 'Termos de Uso',
             pageIndex: 7,
           ),
+          buildMenuButton(
+            context: context,
+            icon: Icons.password,
+            label: 'Alterar Senha',
+            pageIndex: 8,
+          ),
 
           const Spacer(),
 

@@ -321,7 +321,7 @@ class _MyHomePageState extends State<TicketPage> {
                       icon: const Icon(
                         Icons.remove,
                         color: Colors.white,
-                        size: 30,
+                        size: 25,
                       ),
                       onPressed: () {
                         if (_quantidadeTickets > 1) {
@@ -356,7 +356,7 @@ class _MyHomePageState extends State<TicketPage> {
                       icon: const Icon(
                         Icons.add,
                         color: Colors.white,
-                        size: 30,
+                        size: 25,
                       ),
                       onPressed: () {
                         if (_quantidadeTickets < 10) {
