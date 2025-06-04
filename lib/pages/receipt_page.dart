@@ -14,7 +14,7 @@ class _MyHomePageState extends State<ReceiptPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-         padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 22.0),
+         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           spacing: 8,

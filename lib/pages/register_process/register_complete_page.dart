@@ -58,7 +58,7 @@ class _MyHomePageState extends State<RegisterCompletePage> {
                 Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => login_page(title: 'Pagina de Login'),
+                    builder: (context) => LoginPage(title: 'Pagina de Login'),
                   ),
                   (Route<dynamic> route) => false,
                 );

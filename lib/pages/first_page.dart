@@ -39,7 +39,7 @@ class _MyHomePageState extends State<FirstPage> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const login_page(title: 'Login'),
+                        builder: (context) => const LoginPage(title: 'Login'),
                       ),
                     );
                   },
@@ -66,7 +66,7 @@ class _MyHomePageState extends State<FirstPage> {
                       MaterialPageRoute(
                         builder:
                             (context) =>
-                                const register_page(title: 'Cadastre-se'),
+                                const RegisterPage(title: 'Cadastre-se'),
                       ),
                     );
                   },

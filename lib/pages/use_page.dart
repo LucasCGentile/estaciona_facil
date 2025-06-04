@@ -121,7 +121,9 @@ class _UsePageState extends State<UsePage> {
           Text(label),
           Text(
             value,
-            style: isBoldRight ? const TextStyle(fontWeight: FontWeight.bold) : null,
+            style: isBoldRight
+                ? const TextStyle(fontWeight: FontWeight.bold)
+                : null,
           ),
         ],
       ),

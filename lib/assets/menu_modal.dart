@@ -98,6 +98,12 @@ class MenuModal extends StatelessWidget {
             label: 'Termos de Uso',
             pageIndex: 7,
           ),
+          buildMenuButton(
+            context: context,
+            icon: Icons.password,
+            label: 'Alterar Senha',
+            pageIndex: 8,
+          ),
 
           const Spacer(),
 
@@ -108,10 +114,12 @@ class MenuModal extends StatelessWidget {
                 onPressed: () {
                   Navigator.pop(context);
                   Future.delayed(const Duration(milliseconds: 150), () {
+                    if (!context.mounted) return;
+
                     Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => const login_page(title: 'Login'),
+                        builder: (_) => const LoginPage(title: 'Login'),
                       ),
                       (route) => false,
                     );
