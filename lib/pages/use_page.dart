@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class UsePage extends StatefulWidget {
   const UsePage({super.key, required this.title});
@@ -10,109 +11,133 @@ class UsePage extends StatefulWidget {
 }
 
 class _UsePageState extends State<UsePage> {
+  final double valorTicket = 4.00;
+
+  final List<Map<String, dynamic>> tickets = [
+    {
+      "emissao": DateTime(2025, 3, 29, 10, 20),
+      "duracao": Duration(hours: 2),
+      "valor": 4.00,
+      "codigo": "00002",
+      "placa": "FWS-4E26",
+    },
+    {
+      "emissao": DateTime(2025, 3, 24, 14, 50),
+      "duracao": Duration(hours: 1),
+      "valor": 2.00,
+      "codigo": "00001",
+      "placa": "FWS-4E26",
+    },
+    {
+      "emissao": DateTime(2025, 3, 20, 9, 30),
+      "duracao": Duration(hours: 2),
+      "valor": 4.00,
+      "codigo": "00000",
+      "placa": "FWS-4E26",
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          children: [
-            buildTicket(
-              valor: "R\$ 4,00",
-              emissao: "10:20 29/03/2025",
-              codigo: "00002",
-              validade: "12:20 29/03/2025",
-              tempo: "2 h : 0 m",
-              placa: "ERF-1J36",
-              cidade: "SÃO ROQUE",
-            ),
-            buildTicket(
-              valor: "R\$ 2,00",
-              emissao: "14:50 24/03/2025",
-              codigo: "00001",
-              validade: "15:50 24/03/2025",
-              tempo: "1 h : 0 m",
-              placa: "ERF-1J36",
-              cidade: "SÃO ROQUE",
-            ),
-          ],
+          children:
+              tickets.map((ticket) {
+                final emissao = ticket["emissao"] as DateTime;
+                final validade = emissao.add(ticket["duracao"] as Duration);
+                final tempo = validade.difference(emissao);
+                final horas = tempo.inHours;
+                final minutos = tempo.inMinutes.remainder(60);
+
+                return Container(
+                  height: 280,
+                  margin: const EdgeInsets.only(bottom: 16),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.shade100,
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.05),
+                        blurRadius: 4,
+                        offset: const Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    children: [
+                      Container(
+                        width: 6,
+                        decoration: const BoxDecoration(
+                          color: Colors.purple,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(16),
+                            bottomLeft: Radius.circular(16),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                "Emissão Ticket",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                "R\$ ${ticket["valor"].toStringAsFixed(2)}",
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              buildInfoRow(
+                                "Emissão:",
+                                DateFormat('HH:mm dd/MM/yyyy').format(emissao),
+                              ),
+                              buildInfoRow("Código:", ticket["codigo"]),
+                              buildInfoRow(
+                                "Validade:",
+                                DateFormat('HH:mm dd/MM/yyyy').format(validade),
+                              ),
+                              buildInfoRow(
+                                "Tempo Total:",
+                                "$horas h : $minutos m",
+                              ),
+                              const Divider(height: 32),
+                              buildInfoRow(
+                                "Placa:",
+                                ticket["placa"],
+                                boldValue: true,
+                              ),
+                              buildInfoRow(
+                                "Cidade:",
+                                "SÃO ROQUE",
+                                boldValue: true,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
         ),
       ),
     );
   }
 
-  Widget buildTicket({
-    required String valor,
-    required String emissao,
-    required String codigo,
-    required String validade,
-    required String tempo,
-    required String placa,
-    required String cidade,
-  }) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 8),
-      decoration: BoxDecoration(
-        color: Colors.grey[100],
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          // Faixa lateral roxa
-          Container(
-            width: 5,
-            decoration: const BoxDecoration(
-              color: Colors.purple,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(12),
-                bottomLeft: Radius.circular(12),
-              ),
-            ),
-          ),
-          // Conteúdo do ticket
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Emissão Ticket",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    valor,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  rowItem("Emissão:", emissao),
-                  rowItem("Código:", codigo),
-                  rowItem("Validade:", validade),
-                  rowItem("Tempo Total:", tempo),
-                  const Divider(height: 16),
-                  rowItem("Placa:", placa, isBoldRight: true),
-                  rowItem("Cidade:", cidade),
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget rowItem(String label, String value, {bool isBoldRight = false}) {
+  Widget buildInfoRow(String label, String value, {bool boldValue = false}) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 2),
       child: Row(
@@ -121,9 +146,10 @@ class _UsePageState extends State<UsePage> {
           Text(label),
           Text(
             value,
-            style: isBoldRight
-                ? const TextStyle(fontWeight: FontWeight.bold)
-                : null,
+            style:
+                boldValue
+                    ? const TextStyle(fontWeight: FontWeight.bold)
+                    : const TextStyle(),
           ),
         ],
       ),
