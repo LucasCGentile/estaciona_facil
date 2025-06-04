@@ -66,6 +66,8 @@ class _ChangePasswordState extends State<ChangePassword> {
     );
 
     Future.delayed(const Duration(seconds: 2), () {
+      if (!mounted) return;
+
       Navigator.of(context).pop();
 
       ScaffoldMessenger.of(context).showSnackBar(

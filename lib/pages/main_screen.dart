@@ -35,46 +35,47 @@ PreferredSizeWidget customAppBar(BuildContext context) {
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
                 ),
-                builder: (context) => Container(
-                  padding: const EdgeInsets.all(16),
-                  height: 300,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Center(
-                        child: Text(
-                          'Informações do Usuário',
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
+                builder:
+                    (context) => Container(
+                      padding: const EdgeInsets.all(16),
+                      height: 300,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Center(
+                            child: Text(
+                              'Informações do Usuário',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
-                        ),
+                          const SizedBox(height: 16),
+                          const ListTile(
+                            leading: Icon(Icons.password),
+                            title: Text('Alterar Senha'),
+                          ),
+                          const ListTile(
+                            leading: Icon(Icons.edit),
+                            title: Text('Editar Dados'),
+                          ),
+                          const ListTile(
+                            leading: Icon(Icons.delete),
+                            title: Text('Apagar Conta'),
+                          ),
+                          const Spacer(),
+                          Center(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text('Fechar'),
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 16),
-                      const ListTile(
-                        leading: Icon(Icons.password),
-                        title: Text('Alterar Senha'),
-                      ),
-                      const ListTile(
-                        leading: Icon(Icons.edit),
-                        title: Text('Editar Dados'),
-                      ),
-                      const ListTile(
-                        leading: Icon(Icons.delete),
-                        title: Text('Apagar Conta'),
-                      ),
-                      const Spacer(),
-                      Center(
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text('Fechar'),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                    ),
               );
             },
           ),
@@ -126,15 +127,16 @@ class MainScreenState extends State<MainScreen> {
   }
 
   final List<Widget> _pages = [
-    const HomePage(title: 'Página Inicial'),        // 0
-    const TicketPage(title: 'Comprar Ticket'),      // 1
-    const VehiclePage(title: 'Meus Veículos'),      // 2
-    const UsePage(title: 'Histórico de Uso'),       // 3
-    const ReceiptPage(title: 'Extrato'),            // 4
-    const MyAccount(title: 'Minha Conta'),          // 5
-    const ConfigPage(title: 'Configurações'),       // 6
-    const TermsPage(title: 'Termos de Uso'),        // 7
+    const HomePage(title: 'Página Inicial'), // 0
+    const TicketPage(title: 'Comprar Ticket'), // 1
+    const VehiclePage(title: 'Meus Veículos'), // 2
+    const UsePage(title: 'Histórico de Uso'), // 3
+    const ReceiptPage(title: 'Extrato'), // 4
+    const MyAccount(title: 'Minha Conta'), // 5
+    const ConfigPage(title: 'Configurações'), // 6
+    const TermsPage(title: 'Termos de Uso'), // 7
     const EstacionaPage(title: 'Estacionar agora'), // 8
+    const ChangePassword(title: 'Alterar Senha'), // 9
   ];
 
   void _onNavTap(int index) {
@@ -145,13 +147,14 @@ class MainScreenState extends State<MainScreen> {
           borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
         ),
         isScrollControlled: true,
-        builder: (_) => MenuModal(
-          onPageSelected: (int pageIndex) {
-            setState(() {
-              _currentIndex = pageIndex;
-            });
-          },
-        ),
+        builder:
+            (_) => MenuModal(
+              onPageSelected: (int pageIndex) {
+                setState(() {
+                  _currentIndex = pageIndex;
+                });
+              },
+            ),
       );
     } else {
       setState(() {

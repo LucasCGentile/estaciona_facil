@@ -1,6 +1,4 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:estaciona_facil/assets/app_colors.dart';
 
 class TicketPage extends StatefulWidget {

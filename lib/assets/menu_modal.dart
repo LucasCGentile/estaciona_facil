@@ -102,7 +102,7 @@ class MenuModal extends StatelessWidget {
             context: context,
             icon: Icons.password,
             label: 'Alterar Senha',
-            pageIndex: 8,
+            pageIndex: 9,
           ),
 
           const Spacer(),
