@@ -103,6 +103,7 @@ class _MyHomePageState extends State<TicketPage> {
       builder: (_) => AlertDialog(
         title: const Text('Pagamento realizado!'),
         content: const Text('Seu ticket foi adquirido com sucesso.'),
+        icon: const Icon(Icons.check, color: Colors.green, size: 50,),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
@@ -134,7 +135,7 @@ class _MyHomePageState extends State<TicketPage> {
                   children: [
                     CircleAvatar(
                       backgroundColor: AppColors.corPrincipal,
-                      child: const Icon(Icons.add, color: Colors.white, size: 30),
+                      child: const Icon(Icons.remove, color: Colors.white, size: 30),
                     ),
                     Container(
                       width: 150,
@@ -158,7 +159,7 @@ class _MyHomePageState extends State<TicketPage> {
                     ),
                     CircleAvatar(
                       backgroundColor: AppColors.corPrincipal,
-                      child: const Icon(Icons.remove, color: Colors.white, size: 30),
+                      child: const Icon(Icons.add, color: Colors.white, size: 30),
                     ),
                   ],
                 ),

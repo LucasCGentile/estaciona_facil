@@ -1,6 +1,7 @@
 import 'package:estaciona_facil/assets/bottom_navigation.dart';
 import 'package:estaciona_facil/assets/menu_modal.dart';
 import 'package:estaciona_facil/pages/config_page.dart';
+import 'package:estaciona_facil/pages/estaciona_page.dart';
 import 'package:estaciona_facil/pages/home_page.dart';
 import 'package:estaciona_facil/pages/my_account.dart';
 import 'package:estaciona_facil/pages/receipt_page.dart';
@@ -133,6 +134,7 @@ class MainScreenState extends State<MainScreen> {
     const MyAccount(title: 'Minha Conta'), // 5
     const ConfigPage(title: 'Configurações'), // 6
     const TermsPage(title: 'Termos de Uso'), // 7
+    const EstacionaPage(title: 'Estacionar agora') // 8
   ];
 
   void _onNavTap(int index) {

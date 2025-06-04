@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:estaciona_facil/pages/estaciona_page.dart';
 import 'package:estaciona_facil/pages/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -133,8 +134,16 @@ class _MyHomePageState extends State<HomePage> {
                 children: [
                   _botaoAcao(
                     icon: Icons.no_crash,
-                    label: 'Estacionar Agora',
-                    onPressed: () {},
+                    label: 'Estaciona Page',
+                    onPressed: () {
+
+                       Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const EstacionaPage(title: 'Estacionar'),
+                 ),);
+
+                    },
                   ),
 
                   SizedBox(width: 12),

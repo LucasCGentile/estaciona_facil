@@ -81,62 +81,64 @@ class _VehiclePageState extends State<VehiclePage> {
           child: Container(
             height: screenHeight * 0.25,
             padding: const EdgeInsets.all(16),
-            child: Form(
-              key: formKey,
-              child: Column(
-                children: [
-                  TextFormField(
-                    controller: nomeController,
-                    decoration: const InputDecoration(
-                      labelText: 'Nome do Carro',
-                      border: OutlineInputBorder(),
+            child: SingleChildScrollView(
+              child: Form(
+                key: formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      controller: nomeController,
+                      decoration: const InputDecoration(
+                        labelText: 'Nome do Carro',
+                        border: OutlineInputBorder(),
+                      ),
+                      validator: (value) {
+                        if (value == null || value.trim().isEmpty) {
+                          return 'Informe o nome do carro';
+                        }
+                        return null;
+                      },
                     ),
-                    validator: (value) {
-                      if (value == null || value.trim().isEmpty) {
-                        return 'Informe o nome do carro';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 12),
-                  TextFormField(
-                    controller: placaController,
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(7),
-                      FilteringTextInputFormatter.allow(RegExp(r'[A-Za-z0-9]')),
-                    ],
-                    decoration: const InputDecoration(
-                      labelText: 'Placa',
-                      border: OutlineInputBorder(),
+                    const SizedBox(height: 12),
+                    TextFormField(
+                      controller: placaController,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(7),
+                        FilteringTextInputFormatter.allow(RegExp(r'[A-Za-z0-9]')),
+                      ],
+                      decoration: const InputDecoration(
+                        labelText: 'Placa',
+                        border: OutlineInputBorder(),
+                      ),
+                      textCapitalization: TextCapitalization.characters,
+                      validator: (value) {
+                        if (value == null || value.trim().isEmpty) {
+                          return 'Informe a placa';
+                        } else if (value.trim().length < 7) {
+                          return 'Placa incompleta';
+                        }
+                        return null;
+                      },
                     ),
-                    textCapitalization: TextCapitalization.characters,
-                    validator: (value) {
-                      if (value == null || value.trim().isEmpty) {
-                        return 'Informe a placa';
-                      } else if (value.trim().length < 7) {
-                        return 'Placa incompleta';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () {
-                      if (formKey.currentState!.validate()) {
-                        String nome = nomeController.text.trim();
-                        String placa = placaController.text.trim().toUpperCase();
-                        _showConfirmVehicleDialog(nome, placa, context);
-                      }
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.corPrincipal,
+                    const SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          String nome = nomeController.text.trim();
+                          String placa = placaController.text.trim().toUpperCase();
+                          _showConfirmVehicleDialog(nome, placa, context);
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.corPrincipal,
+                      ),
+                      child: const Text(
+                        'Salvar Veículo',
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
-                    child: const Text(
-                      'Salvar Veículo',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -152,6 +154,7 @@ class _VehiclePageState extends State<VehiclePage> {
         return AlertDialog(
           title: const Text('Sucesso'),
           content: const Text('Veículo excluído com sucesso!'),
+          icon: const Icon(Icons.check, color: Colors.green, size: 50,),
           actions: [
             TextButton(
               onPressed: () {
