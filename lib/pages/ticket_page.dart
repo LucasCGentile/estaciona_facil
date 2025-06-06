@@ -19,80 +19,83 @@ class _MyHomePageState extends State<TicketPage> {
     'Cartão de débito',
   ];
 
+  double _valorTotal = 2.0; // Valor inicial
+
   void _mostrarModalPagamento() {
     if (_metodoSelecionado == 'Pix') {
       showDialog(
         context: context,
-        builder: (_) => AlertDialog(
-          title: const Text('Pagamento via Pix'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // Substitua por uma imagem real do QR Code, se quiser
-              Container(
-                width: 200,
-                height: 200,
-                color: Colors.grey[300],
-                child: const Center(child: Text('QR CODE')),
+        builder:
+            (_) => AlertDialog(
+              title: const Text('Pagamento via Pix'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    width: 200,
+                    height: 200,
+                    color: Colors.grey[300],
+                    child: const Center(child: Text('QR CODE')),
+                  ),
+                  const SizedBox(height: 20),
+                  const Text('Escaneie o código com seu app bancário.'),
+                ],
               ),
-              const SizedBox(height: 20),
-              const Text('Escaneie o código com seu app bancário.', ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Fechar'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Fechar'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    _mostrarConfirmacao();
+                  },
+                  child: const Text('Concluir'),
+                ),
+              ],
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-                _mostrarConfirmacao();
-              },
-              child: const Text('Concluir'),
-            ),
-          ],
-        ),
       );
     } else {
       showDialog(
         context: context,
-        builder: (_) => AlertDialog(
-          title: const Text('Dados do Cartão'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: const [
-              TextField(
-                decoration: InputDecoration(labelText: 'Número do cartão'),
-                keyboardType: TextInputType.number,
+        builder:
+            (_) => AlertDialog(
+              title: const Text('Dados do Cartão'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Número do cartão'),
+                    keyboardType: TextInputType.number,
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Nome no cartão'),
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Validade (MM/AA)'),
+                    keyboardType: TextInputType.datetime,
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: 'CVV'),
+                    keyboardType: TextInputType.number,
+                  ),
+                ],
               ),
-              TextField(
-                decoration: InputDecoration(labelText: 'Nome no cartão'),
-              ),
-              TextField(
-                decoration: InputDecoration(labelText: 'Validade (MM/AA)'),
-                keyboardType: TextInputType.datetime,
-              ),
-              TextField(
-                decoration: InputDecoration(labelText: 'CVV'),
-                keyboardType: TextInputType.number,
-              ),
-            ],
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Fechar'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Fechar'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                    _mostrarConfirmacao();
+                  },
+                  child: const Text('Concluir'),
+                ),
+              ],
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-                _mostrarConfirmacao();
-              },
-              child: const Text('Concluir'),
-            ),
-          ],
-        ),
       );
     }
   }
@@ -100,16 +103,17 @@ class _MyHomePageState extends State<TicketPage> {
   void _mostrarConfirmacao() {
     showDialog(
       context: context,
-      builder: (_) => AlertDialog(
-        title: const Text('Pagamento realizado!'),
-        content: const Text('Seu ticket foi adquirido com sucesso.',),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Fechar'),
+      builder:
+          (_) => AlertDialog(
+            title: const Text('Pagamento realizado!'),
+            content: const Text('Seu ticket foi adquirido com sucesso.'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Fechar'),
+              ),
+            ],
           ),
-        ],
-      ),
     );
   }
 
@@ -132,9 +136,22 @@ class _MyHomePageState extends State<TicketPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CircleAvatar(
-                      backgroundColor: AppColors.corPrincipal,
-                      child: const Icon(Icons.add, color: Colors.white, size: 30),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          if (_valorTotal > 2.0) {
+                            _valorTotal -= 2.0;
+                          }
+                        });
+                      },
+                      child: CircleAvatar(
+                        backgroundColor: AppColors.corPrincipal,
+                        child: const Icon(
+                          Icons.remove,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                      ),
                     ),
                     Container(
                       width: 150,
@@ -146,7 +163,7 @@ class _MyHomePageState extends State<TicketPage> {
                       ),
                       child: Center(
                         child: Text(
-                          'TOTAL (R\$)\n5,00',
+                          'TOTAL (R\$)\n${_valorTotal.toStringAsFixed(2)}',
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 25,
@@ -156,9 +173,22 @@ class _MyHomePageState extends State<TicketPage> {
                         ),
                       ),
                     ),
-                    CircleAvatar(
-                      backgroundColor: AppColors.corPrincipal,
-                      child: const Icon(Icons.remove, color: Colors.white, size: 30),
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          if (_valorTotal < 20.0) {
+                            _valorTotal += 2.0;
+                          }
+                        });
+                      },
+                      child: CircleAvatar(
+                        backgroundColor: AppColors.corPrincipal,
+                        child: const Icon(
+                          Icons.add,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -171,23 +201,27 @@ class _MyHomePageState extends State<TicketPage> {
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 3),
                   decoration: BoxDecoration(
-                    border: Border.all(color: AppColors.corPrincipal, width: 1.5),
+                    border: Border.all(
+                      color: AppColors.corPrincipal,
+                      width: 1.5,
+                    ),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Column(
-                    children: _opcoesPagamento.map((opcao) {
-                      return RadioListTile<String>(
-                        title: Text(opcao),
-                        value: opcao,
-                        groupValue: _metodoSelecionado,
-                        activeColor:AppColors.corPrincipal,
-                        onChanged: (value) {
-                          setState(() {
-                            _metodoSelecionado = value!;
-                          });
-                        },
-                      );
-                    }).toList(),
+                    children:
+                        _opcoesPagamento.map((opcao) {
+                          return RadioListTile<String>(
+                            title: Text(opcao),
+                            value: opcao,
+                            groupValue: _metodoSelecionado,
+                            activeColor: AppColors.corPrincipal,
+                            onChanged: (value) {
+                              setState(() {
+                                _metodoSelecionado = value!;
+                              });
+                            },
+                          );
+                        }).toList(),
                   ),
                 ),
                 const SizedBox(height: 30),
@@ -195,7 +229,10 @@ class _MyHomePageState extends State<TicketPage> {
                   onPressed: _mostrarModalPagamento,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.corPrincipal,
-                    padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 12,
+                    ),
                   ),
                   child: const Text(
                     'Concluir Pagamento',

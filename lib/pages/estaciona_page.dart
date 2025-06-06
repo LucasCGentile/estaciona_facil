@@ -11,18 +11,13 @@ class EstacionaPage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<EstacionaPage> {
-
   String? veiculoSelecionado;
-  final List<String> veiculos = ['AHFIFHE5', 'AHFIFHE6', 'AHFIFHE7'];
-
+  final List<String> veiculos = ['FWS4E26', 'ETE-4527'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-
-        
-
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -32,17 +27,18 @@ class _MyHomePageState extends State<EstacionaPage> {
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 16),
-          
+
               // Dropdown de veículos
               DropdownButtonFormField<String>(
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: "selecione o veículo",
+                  labelText: "Selecione um veículo",
                 ),
                 value: veiculoSelecionado,
-                items: veiculos
-                    .map((v) => DropdownMenuItem(value: v, child: Text(v)))
-                    .toList(),
+                items:
+                    veiculos
+                        .map((v) => DropdownMenuItem(value: v, child: Text(v)))
+                        .toList(),
                 onChanged: (value) {
                   setState(() {
                     veiculoSelecionado = value;
@@ -50,7 +46,7 @@ class _MyHomePageState extends State<EstacionaPage> {
                 },
               ),
               const SizedBox(height: 20),
-          
+
               // Cards de preço
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -61,22 +57,29 @@ class _MyHomePageState extends State<EstacionaPage> {
                 ],
               ),
               const SizedBox(height: 30),
-          
+
               // Botão ADICIONAR
               ElevatedButton(
                 onPressed: () {
                   // Ação do botão
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor:  AppColors.corPrincipal,
+                  backgroundColor: AppColors.corPrincipal,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 40,
+                    vertical: 16,
+                  ),
                 ),
                 child: const Text(
                   "ADICIONAR",
-                  style: TextStyle(fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ],
@@ -104,9 +107,7 @@ class _MyHomePageState extends State<EstacionaPage> {
           ),
           Text(duracao),
         ],
-      
-      
-        ),
-        );
+      ),
+    );
   }
 }
