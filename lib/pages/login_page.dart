@@ -100,7 +100,7 @@ class _MyHomePageState extends State<LoginPage> {
                         onPressed: () {},
                         child: Text(
                           'Esqueceu a senha?',
-                          style: TextStyle(fontSize: 14),
+                          style: TextStyle(fontSize: 14, color: AppColors.corPrincipal),
                         ),
                       ),
 

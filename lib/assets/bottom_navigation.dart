@@ -66,7 +66,7 @@ class BottomNavigation extends StatelessWidget {
           ),
           buildNavItem(
             icon: Icons.account_balance_wallet,
-            label: 'Ticket',
+            label: 'Saldo',
             selected: currentIndex == 1,
             onPressed: () => onTap(1),
           ),

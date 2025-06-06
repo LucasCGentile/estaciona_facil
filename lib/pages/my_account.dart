@@ -13,7 +13,7 @@ class MyAccount extends StatefulWidget {
 class _MyAccountState extends State<MyAccount> {
   // Dados simulados
   final String _nome = 'Lucas Silva';
-  final String _cif = '123.456.789-00';
+  final String _cpf = '123.456.789-00';
 
   // Campos editáveis
   final TextEditingController _emailController = TextEditingController();
@@ -102,7 +102,7 @@ class _MyAccountState extends State<MyAccount> {
               _emailController,
               'Digite seu e-mail',
             ),
-            _buildReadOnlyField('CIF', _cif),
+            _buildReadOnlyField('CPF', _cpf),
             _buildEditableField(
               'Telefone',
               _telefoneController,

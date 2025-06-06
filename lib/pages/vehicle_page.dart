@@ -154,13 +154,14 @@ class _VehiclePageState extends State<VehiclePage> {
         return AlertDialog(
           title: const Text('Sucesso'),
           content: const Text('Veículo excluído com sucesso!'),
-          icon: const Icon(Icons.check, color: Colors.green, size: 50,),
+          icon: const Icon( Icons.check_circle,
+              color: Colors.green,),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop(); // Fecha o alerta
               },
-              child: const Text('OK'),
+              child: const Text('OK', style: TextStyle(color: AppColors.corPrincipal)),
             ),
           ],
         );

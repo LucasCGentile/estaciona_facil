@@ -44,14 +44,21 @@ class _MyHomePageState extends State<TicketPage> {
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(context),
-                  child: const Text('Fechar'),
+                  child: const Text('Fechar', style: TextStyle(color: AppColors.corPrincipal)),
                 ),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context);
                     _mostrarConfirmacao();
                   },
-                  child: const Text('Concluir'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.corPrincipal,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 12,
+                    ),
+                  ),
+                  child: const Text('Concluir', style: TextStyle(fontSize: 18, color: Colors.white)),
                 ),
               ],
             ),
@@ -85,14 +92,21 @@ class _MyHomePageState extends State<TicketPage> {
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(context),
-                  child: const Text('Fechar'),
+                  child: const Text('Fechar', style: TextStyle(color: AppColors.corPrincipal),),
                 ),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context);
                     _mostrarConfirmacao();
                   },
-                  child: const Text('Concluir'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.corPrincipal,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 12,
+                    ),
+                  ),
+                  child: const Text('Concluir', style: TextStyle(fontSize: 18, color: Colors.white)),
                 ),
               ],
             ),
@@ -105,12 +119,17 @@ class _MyHomePageState extends State<TicketPage> {
       context: context,
       builder:
           (_) => AlertDialog(
+            icon: const Icon(
+              Icons.check_circle,
+              color: Colors.green,
+              size: 50,
+            ),
             title: const Text('Pagamento realizado!'),
             content: const Text('Seu ticket foi adquirido com sucesso.'),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context),
-                child: const Text('Fechar'),
+                child: const Text('Fechar', style: TextStyle(color: AppColors.corPrincipal)),
               ),
             ],
           ),
@@ -128,7 +147,7 @@ class _MyHomePageState extends State<TicketPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  'Deseja adquirir um ticket? \nSelecione o valor abaixo:',
+                  'Deseja adquirir Saldo? \nSelecione o valor abaixo:',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 20),
                 ),
