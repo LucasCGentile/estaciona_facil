@@ -36,7 +36,7 @@ class MenuModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.7,
+      height: MediaQuery.of(context).size.height * 0.75,
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,6 +103,13 @@ class MenuModal extends StatelessWidget {
             icon: Icons.password,
             label: 'Alterar Senha',
             pageIndex: 9,
+          ),
+
+          buildMenuButton(
+            context: context,
+            icon: Icons.car_crash,
+            label: 'Regularização',
+            pageIndex: 10,
           ),
 
           const Spacer(),

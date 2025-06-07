@@ -6,6 +6,7 @@ import 'package:estaciona_facil/pages/estaciona_page.dart';
 import 'package:estaciona_facil/pages/home_page.dart';
 import 'package:estaciona_facil/pages/my_account.dart';
 import 'package:estaciona_facil/pages/receipt_page.dart';
+import 'package:estaciona_facil/pages/regularization_page.dart';
 import 'package:estaciona_facil/pages/terms_page.dart';
 import 'package:estaciona_facil/pages/ticket_page.dart';
 import 'package:estaciona_facil/pages/use_page.dart';
@@ -137,6 +138,7 @@ class MainScreenState extends State<MainScreen> {
     const TermsPage(title: 'Termos de Uso'), // 7
     const EstacionaPage(title: 'Estacionar agora'), // 8
     const ChangePassword(title: 'Alterar Senha'), // 9
+    const RegularizationPage(title: 'Regularização'), //10 
   ];
 
   void _onNavTap(int index) {
