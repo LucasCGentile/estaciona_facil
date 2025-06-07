@@ -155,7 +155,7 @@ class _VehiclePageState extends State<VehiclePage> {
           title: const Text('Sucesso'),
           content: const Text('Veículo excluído com sucesso!'),
           icon: const Icon( Icons.check_circle,
-              color: Colors.green,),
+              color: Colors.green, size: 50,),
           actions: [
             TextButton(
               onPressed: () {
