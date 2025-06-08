@@ -43,8 +43,8 @@ class _MyHomePageState extends State<LoginPage> {
                     padding: const EdgeInsets.all(40.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(20),
-                      child: Image.network(
-                        'https://play-lh.googleusercontent.com/v6fXEV_ghjMDsKFxTRlN6z6bD8-GRUgCTqUiE-WdlrzkYyqGo-LPwtuLoHfC2WLZi14',
+                      child: Image.asset(
+                        'lib/assets/img/logoSaoRoque.png',
                         width: 200,
                         height: 200,
                       ),
@@ -100,7 +100,10 @@ class _MyHomePageState extends State<LoginPage> {
                         onPressed: () {},
                         child: Text(
                           'Esqueceu a senha?',
-                          style: TextStyle(fontSize: 14, color: AppColors.corPrincipal),
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: AppColors.corPrincipal,
+                          ),
                         ),
                       ),
 

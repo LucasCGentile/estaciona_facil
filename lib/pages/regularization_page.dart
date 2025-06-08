@@ -272,11 +272,11 @@ class _MyHomePageState extends State<RegularizationPage> {
                   "Escaneie o QR Code abaixo para efetuar o pagamento:",
                 ),
                 const SizedBox(height: 16),
-                Container(
+                Image.asset(
+                  'assets/img/qrcode.jpeg',
                   width: 150,
                   height: 150,
-                  color: Colors.grey[300],
-                  child: const Center(child: Text("QR CODE")),
+                  fit: BoxFit.contain,
                 ),
               ],
             ),
