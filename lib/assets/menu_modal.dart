@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:badges/badges.dart' as badges;
 import 'package:estaciona_facil/pages/login_page.dart';
 
 class MenuModal extends StatelessWidget {
@@ -11,6 +12,7 @@ class MenuModal extends StatelessWidget {
     required IconData icon,
     required String label,
     required int pageIndex,
+    Widget? iconWithBadge,
   }) {
     return InkWell(
       onTap: () {
@@ -24,7 +26,7 @@ class MenuModal extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8.0),
         child: Row(
           children: [
-            Icon(icon, color: Colors.black87),
+            iconWithBadge ?? Icon(icon, color: Colors.black87),
             const SizedBox(width: 16),
             Text(label, style: const TextStyle(fontSize: 16)),
           ],
@@ -61,12 +63,12 @@ class MenuModal extends StatelessWidget {
 
           const SizedBox(height: 20),
 
-          // Botões, agora usando índices da MainScreen
+          // Botões
           buildMenuButton(
             context: context,
             icon: Icons.wallet,
             label: 'Comprar Tickets',
-            pageIndex: 1, // índice da página TicketPage
+            pageIndex: 1,
           ),
           buildMenuButton(
             context: context,
@@ -105,11 +107,24 @@ class MenuModal extends StatelessWidget {
             pageIndex: 9,
           ),
 
+          // Badge no botão Regularização
           buildMenuButton(
             context: context,
             icon: Icons.car_crash,
             label: 'Regularização',
             pageIndex: 10,
+            iconWithBadge: badges.Badge(
+              position: badges.BadgePosition.topEnd(top: -6, end: -6),
+              badgeStyle: const badges.BadgeStyle(
+                badgeColor: Colors.red,
+                padding: EdgeInsets.all(6),
+              ),
+              badgeContent: const Text(
+                '1',
+                style: TextStyle(color: Colors.white, fontSize: 10),
+              ),
+              child: const Icon(Icons.car_crash, color: Colors.black87),
+            ),
           ),
 
           const Spacer(),

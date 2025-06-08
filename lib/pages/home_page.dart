@@ -271,10 +271,57 @@ class _MyHomePageState extends State<HomePage> {
               ),
             ),
 
+            // REGULARIZAÇÃO PENDENTE
+            GestureDetector(
+              onTap: () {
+                MainScreenState.of(context)?.setCurrentIndex(10);
+              },
+              child: Container(
+                margin: EdgeInsets.only(bottom: 20),
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.orange[100],
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 6,
+                      offset: Offset(0, 3),
+                    ),
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.warning_amber_rounded,
+                      color: Colors.orange,
+                      size: 36,
+                    ),
+                    SizedBox(width: 12),
+                    Expanded(
+                      child: Text(
+                        'Há uma regularização pendente. Toque para resolver agora.',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
+                      ),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: Colors.grey[700],
+                      size: 20,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
             // BANNER FINAL
             Container(
               decoration: BoxDecoration(
-                color: Colors.grey[300],
+                color: Colors.grey[200],
                 borderRadius: BorderRadius.circular(12),
               ),
               padding: EdgeInsets.all(12),
@@ -318,7 +365,7 @@ class _MyHomePageState extends State<HomePage> {
       style: ElevatedButton.styleFrom(
         elevation: 8,
         shadowColor: const Color.fromARGB(204, 0, 0, 0),
-        backgroundColor: Colors.grey[400],
+        backgroundColor: Colors.grey[300],
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         padding: EdgeInsets.symmetric(vertical: 16, horizontal: 24),
       ),
