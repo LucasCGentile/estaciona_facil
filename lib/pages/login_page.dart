@@ -1,4 +1,5 @@
 import 'package:estaciona_facil/assets/app_colors.dart';
+import 'package:estaciona_facil/pages/forgot_password.dart';
 import 'package:estaciona_facil/pages/main_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -97,7 +98,17 @@ class _MyHomePageState extends State<LoginPage> {
                       ),
 
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder:
+                                  (context) => ForgotPasswordPage(
+                                    title: 'Recuperar Senha',
+                                  ),
+                            ),
+                          );
+                        },
                         child: Text(
                           'Esqueceu a senha?',
                           style: TextStyle(
