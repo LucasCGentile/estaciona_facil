@@ -222,6 +222,7 @@ class _MyHomePageState extends State<RegularizationPage> {
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
+            spacing: 10,
             children: [
               const Text(
                 "Escolha a forma de pagamento",
@@ -233,16 +234,30 @@ class _MyHomePageState extends State<RegularizationPage> {
                   Navigator.pop(context);
                   _showPixModal(context);
                 },
-                child: const Text("PIX"),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.corPrincipal,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 12,
+                    ),
+                  ),
+                child: const Text("PIX", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
               ),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context);
                   _showCartaoModal(context);
                 },
-                child: const Text("Cartão de Crédito"),
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.corPrincipal,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 30,
+                      vertical: 12,
+                    ),
+                  ),
+                child: const Text("Cartão de Crédito", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
               ),
-              const SizedBox(height: 12),
+            
               TextButton(
                 onPressed: () {
                   Navigator.of(context).maybePop(); // mais seguro
@@ -273,7 +288,7 @@ class _MyHomePageState extends State<RegularizationPage> {
                 ),
                 const SizedBox(height: 16),
                 Image.asset(
-                  'assets/img/qrcode.jpeg',
+                  'lib/assets/img/qrcode.jpeg',
                   width: 150,
                   height: 150,
                   fit: BoxFit.contain,
@@ -370,6 +385,7 @@ class _MyHomePageState extends State<RegularizationPage> {
       context: context,
       builder:
           (ctx) => AlertDialog(
+            icon: const Icon(Icons.check_circle, color: Colors.green, size: 50),
             title: const Text("Pagamento Concluído"),
             content: const Text("Seu pagamento foi realizado com sucesso."),
             actions: [

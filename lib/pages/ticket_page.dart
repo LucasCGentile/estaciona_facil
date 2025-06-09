@@ -35,7 +35,7 @@ class _MyHomePageState extends State<TicketPage> {
                     width: 200,
                     height: 200,
                     color: Colors.grey[300],
-                    child: const Center(child: Text('QR CODE')),
+                     child: const Center(child: Image(image: AssetImage('lib/assets/img/qrcode.jpeg'))),
                   ),
                   const SizedBox(height: 20),
                   const Text('Escaneie o código com seu app bancário.'),
