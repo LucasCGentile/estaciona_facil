@@ -219,7 +219,7 @@ class _ConfigPageState extends State<ConfigPage> {
     );
 
     return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
+     
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(

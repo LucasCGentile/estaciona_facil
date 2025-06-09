@@ -18,7 +18,7 @@ class _MyHomePageState extends State<TermsPage> {
           padding: const EdgeInsets.all(8.0),
           child: Container(
             decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 195, 195, 195),
+              color: Colors.grey[200],
               borderRadius: BorderRadius.circular(10)
             ),
             padding: const EdgeInsets.all(20.0),

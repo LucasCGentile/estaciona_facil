@@ -23,16 +23,48 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     final email = _emailController.text.trim();
 
     if (email.isEmpty) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Por favor, insira seu e-mail')));
+      _showMessageModal(
+        title: "Erro",
+        message: "Por favor, insira seu e-mail.",
+        isError: true,
+      );
       return;
     }
 
     // Aqui você pode adicionar a lógica para enviar o e-mail de recuperação
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Link de recuperação enviado para $email')),
+    _showMessageModal(
+      title: "Sucesso",
+      message: "Link de recuperação enviado para $email",
+    );
+  }
+
+  void _showMessageModal({
+    required String title,
+    required String message,
+    bool isError = false,
+  }) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Row(
+          children: [
+            Icon(
+              isError ? Icons.error : Icons.check_circle,
+              color: isError ? Colors.red : Colors.green,
+            ),
+            const SizedBox(width: 8),
+            Text(title),
+          ],
+        ),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: const Text("OK"),
+          ),
+        ],
+      ),
     );
   }
 
@@ -47,7 +79,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Recuperar Senha',
                   style: TextStyle(
                     fontSize: 30,
@@ -55,15 +87,14 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 32),
-
+                const SizedBox(height: 32),
                 Container(
                   width: 370,
                   height: 220,
                   decoration: BoxDecoration(
                     color: const Color(0xFFF5EEEE),
                     borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                         color: Colors.black26,
                         offset: Offset(0, 8),
@@ -76,7 +107,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        padding:
+                            const EdgeInsets.symmetric(horizontal: 16.0),
                         child: TextField(
                           controller: _emailController,
                           keyboardType: TextInputType.emailAddress,
@@ -85,24 +117,22 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15),
                             ),
-                            prefixIcon: Icon(Icons.mail),
+                            prefixIcon: const Icon(Icons.mail),
                           ),
                         ),
                       ),
-                      SizedBox(height: 24),
-
+                      const SizedBox(height: 24),
                       ElevatedButton(
                         onPressed: _sendRecovery,
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.corBotao,
                           foregroundColor: Colors.white,
-                          fixedSize: Size(160, 50),
+                          fixedSize: const Size(160, 50),
                           elevation: 8,
                           shadowColor: Colors.black,
                         ),
-                        child: Text('Enviar', style: TextStyle(fontSize: 20)),
+                        child: const Text('Enviar', style: TextStyle(fontSize: 20)),
                       ),
-
                       TextButton(
                         onPressed: () => Navigator.pop(context),
                         child: Text(

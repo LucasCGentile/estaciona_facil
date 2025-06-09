@@ -44,140 +44,139 @@ class _MyHomePageState extends State<RegularizationPage> {
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          children:
-              tickets.map((ticket) {
-                final dataMulta = ticket["dataMulta"] as DateTime;
-                final validade = dataMulta.add(ticket["duracao"] as Duration);
-                final tempo = validade.difference(dataMulta);
-                final horas = tempo.inHours;
-                final minutos = tempo.inMinutes.remainder(60);
-                final situacao = ticket["situacao"];
+          children: tickets.map((ticket) {
+            final dataMulta = ticket["dataMulta"] as DateTime;
+            final validade = dataMulta.add(ticket["duracao"] as Duration);
+            final tempo = validade.difference(dataMulta);
+            final horas = tempo.inHours;
+            final minutos = tempo.inMinutes.remainder(60);
+            final situacao = ticket["situacao"];
 
-                Color borderColor;
-                switch (situacao) {
-                  case "Regularizada":
-                    borderColor = Colors.green;
-                    break;
-                  case "Pendente":
-                    borderColor = Colors.amber;
-                    break;
-                  default:
-                    borderColor = Colors.red;
-                }
+            Color borderColor;
+            switch (situacao) {
+              case "Regularizada":
+                borderColor = Colors.green;
+                break;
+              case "Pendente":
+                borderColor = Colors.amber;
+                break;
+              default:
+                borderColor = Colors.red;
+            }
 
-                return Container(
-                  height: 280,
-                  margin: const EdgeInsets.only(bottom: 16),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade100,
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.05),
-                        blurRadius: 4,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
+            return Container(
+              height: 280,
+              margin: const EdgeInsets.only(bottom: 16),
+              decoration: BoxDecoration(
+                color: Colors.grey.shade100,
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
                   ),
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 6,
-                        decoration: BoxDecoration(
-                          color: borderColor,
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(16),
-                            bottomLeft: Radius.circular(16),
-                          ),
-                        ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  Container(
+                    width: 6,
+                    decoration: BoxDecoration(
+                      color: borderColor,
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(16),
+                        bottomLeft: Radius.circular(16),
                       ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Stack(
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Stack(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    "Valor da Multa",
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    "R\$ ${ticket["valor"].toStringAsFixed(2)}",
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 12),
-                                  buildInfoRow(
-                                    "Data da Multa:",
-                                    DateFormat(
-                                      'HH:mm dd/MM/yyyy',
-                                    ).format(dataMulta),
-                                  ),
-                                  buildInfoRow(
-                                    "Situação:",
-                                    situacao,
-                                    boldValue: true,
-                                  ),
-                                  buildInfoRow(
-                                    "Validade:",
-                                    DateFormat(
-                                      'HH:mm dd/MM/yyyy',
-                                    ).format(validade),
-                                  ),
-                                  buildInfoRow(
-                                    "Tempo de:",
-                                    "$horas h : $minutos m",
-                                  ),
-                                  const Divider(height: 32),
-                                  buildInfoRow(
-                                    "Placa:",
-                                    ticket["placa"],
-                                    boldValue: true,
-                                  ),
-                                  buildInfoRow(
-                                    "Cidade:",
-                                    "SÃO ROQUE",
-                                    boldValue: true,
-                                  ),
-                                ],
-                              ),
-                              if (situacao == "Pendente")
-                                Positioned(
-                                  top: 0,
-                                  right: 0,
-                                  child: ElevatedButton(
-                                    onPressed: () {
-                                      _showPagamentoModal(context);
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: Colors.yellow[700],
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 18,
-                                        vertical: 8,
-                                      ),
-                                    ),
-                                    child: const Text(
-                                      "Pagar",
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                  ),
+                              const Text(
+                                "Valor da Multa",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
                                 ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                "R\$ ${ticket["valor"].toStringAsFixed(2)}",
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              buildInfoRow(
+                                "Data da Multa:",
+                                DateFormat(
+                                  'HH:mm dd/MM/yyyy',
+                                ).format(dataMulta),
+                              ),
+                              buildInfoRow(
+                                "Situação:",
+                                situacao,
+                                boldValue: true,
+                              ),
+                              buildInfoRow(
+                                "Validade:",
+                                DateFormat(
+                                  'HH:mm dd/MM/yyyy',
+                                ).format(validade),
+                              ),
+                              buildInfoRow(
+                                "Tempo de:",
+                                "$horas h : $minutos m",
+                              ),
+                              const Divider(height: 32),
+                              buildInfoRow(
+                                "Placa:",
+                                ticket["placa"],
+                                boldValue: true,
+                              ),
+                              buildInfoRow(
+                                "Cidade:",
+                                "SÃO ROQUE",
+                                boldValue: true,
+                              ),
                             ],
                           ),
-                        ),
+                          if (situacao == "Pendente")
+                            Positioned(
+                              top: 0,
+                              right: 0,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  _showPagamentoModal(context);
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.yellow[700],
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 18,
+                                    vertical: 8,
+                                  ),
+                                ),
+                                child: const Text(
+                                  "Pagar",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                );
-              }).toList(),
+                ],
+              ),
+            );
+          }).toList(),
         ),
       ),
     );
@@ -192,10 +191,9 @@ class _MyHomePageState extends State<RegularizationPage> {
           Text(label),
           Text(
             value,
-            style:
-                boldValue
-                    ? const TextStyle(fontWeight: FontWeight.bold)
-                    : const TextStyle(),
+            style: boldValue
+                ? const TextStyle(fontWeight: FontWeight.bold)
+                : const TextStyle(),
           ),
         ],
       ),
@@ -207,65 +205,69 @@ class _MyHomePageState extends State<RegularizationPage> {
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (BuildContext context) {
+      builder: (BuildContext modalContext) {
         return Container(
-          width: double.infinity, // largura total
+          width: double.infinity,
           decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
           ),
           padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.bottom + 16,
+            bottom: MediaQuery.of(modalContext).viewInsets.bottom + 16,
             top: 24,
             left: 16,
             right: 16,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            spacing: 10,
+            
             children: [
               const Text(
-                "Escolha a forma de pagamento",
+                "Escolha a forma de pagamento:",
                 style: TextStyle(fontSize: 18),
               ),
               const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  _showPixModal(context);
-                },
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.corPrincipal,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 30,
-                      vertical: 12,
+              Column(
+                spacing: 20,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(modalContext);
+                      _showPixModal(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.corBotao,
+                          foregroundColor: Colors.white,
+                          fixedSize: Size(160, 50),
+                          elevation: 8,
+                          shadowColor: Colors.black,
+                        ),
+                    child: const Text("PIX", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.pop(modalContext);
+                      _showCartaoModal(context);
+                    },
+                     style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.corBotao,
+                          foregroundColor: Colors.white,
+                          fixedSize: Size(160, 50),
+                          elevation: 8,
+                          shadowColor: Colors.black,
+                        ),
+                    child: const Text("Crédito", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(modalContext).maybePop();
+                    },
+                    child: const Text(
+                      "Fechar",
+                      style: TextStyle(color: Colors.black),
                     ),
                   ),
-                child: const Text("PIX", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                  _showCartaoModal(context);
-                },
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.corPrincipal,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 30,
-                      vertical: 12,
-                    ),
-                  ),
-                child: const Text("Cartão de Crédito", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-              ),
-            
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).maybePop(); // mais seguro
-                },
-                child: const Text(
-                  "Fechar",
-                  style: TextStyle(color: Colors.black),
-                ),
+                ],
               ),
             ],
           ),
@@ -277,39 +279,40 @@ class _MyHomePageState extends State<RegularizationPage> {
   void _showPixModal(BuildContext context) {
     showDialog(
       context: context,
-      builder:
-          (ctx) => AlertDialog(
-            title: const Text("Pagamento via PIX"),
-            content: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Text(
-                  "Escaneie o QR Code abaixo para efetuar o pagamento:",
-                ),
-                const SizedBox(height: 16),
-                Image.asset(
-                  'lib/assets/img/qrcode.jpeg',
-                  width: 150,
-                  height: 150,
-                  fit: BoxFit.contain,
-                ),
-              ],
+      builder: (ctx) => AlertDialog(
+        title: const Text("Pagamento via PIX"),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text("Escaneie o QR Code abaixo para efetuar o pagamento:"),
+            const SizedBox(height: 16),
+            Image.asset(
+              'lib/assets/img/qrcode.jpeg',
+              width: 150,
+              height: 150,
+              fit: BoxFit.contain,
             ),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(ctx);
-                },
-                style: TextButton.styleFrom(
-                  backgroundColor: AppColors.corBotao,
-                ),
-                child: const Text(
-                  "Fechar",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ),
-            ],
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).maybePop();
+            },
+            child: const Text("Fechar", style: TextStyle(color: Colors.black)),
           ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+              _showConfirmacaoModal(context);
+            },
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.corBotao,
+            ),
+            child: const Text("Próximo", style: TextStyle(color: Colors.white)),
+          ),
+        ],
+      ),
     );
   }
 
@@ -352,25 +355,19 @@ class _MyHomePageState extends State<RegularizationPage> {
               actions: [
                 TextButton(
                   onPressed: () {
-                    Navigator.of(context).maybePop();
+                    Navigator.of(ctx).maybePop();
                   },
-                  child: const Text(
-                    "Fechar",
-                    style: TextStyle(color: Colors.black),
-                  ),
+                  child: const Text("Fechar", style: TextStyle(color: Colors.black)),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).pop();
+                    Navigator.of(ctx).pop();
                     _showConfirmacaoModal(context);
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.corBotao, // cor do botão
+                    backgroundColor: AppColors.corBotao,
                   ),
-                  child: const Text(
-                    "Próximo",
-                    style: TextStyle(color: Colors.white),
-                  ),
+                  child: const Text("Próximo", style: TextStyle(color: Colors.white)),
                 ),
               ],
             );
@@ -383,20 +380,19 @@ class _MyHomePageState extends State<RegularizationPage> {
   void _showConfirmacaoModal(BuildContext context) {
     showDialog(
       context: context,
-      builder:
-          (ctx) => AlertDialog(
-            icon: const Icon(Icons.check_circle, color: Colors.green, size: 50),
-            title: const Text("Pagamento Concluído"),
-            content: const Text("Seu pagamento foi realizado com sucesso."),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(ctx).pop(); // Usa o contexto do AlertDialog
-                },
-                child: const Text("OK"),
-              ),
-            ],
+      builder: (ctx) => AlertDialog(
+        icon: const Icon(Icons.check_circle, color: Colors.green, size: 50),
+        title: const Text("Pagamento Concluído"),
+        content: const Text("Seu pagamento foi realizado com sucesso."),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+            },
+            child: const Text("OK"),
           ),
+        ],
+      ),
     );
   }
 }

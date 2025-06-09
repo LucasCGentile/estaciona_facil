@@ -1,3 +1,4 @@
+import 'package:estaciona_facil/assets/app_colors.dart';
 import 'package:estaciona_facil/pages/change_password.dart';
 import 'package:flutter/material.dart';
 import 'package:estaciona_facil/pages/my_account.dart';
@@ -108,6 +109,13 @@ class AvatarModal extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
+               style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.corBotao,
+                          foregroundColor: Colors.white,
+                          fixedSize: Size(160, 50),
+                          elevation: 8,
+                          shadowColor: Colors.black,
+                        ),
               child: const Text('Fechar'),
             ),
           ),
