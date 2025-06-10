@@ -14,6 +14,8 @@ import 'package:estaciona_facil/pages/vehicle_page.dart';
 import 'package:flutter/material.dart';
 import 'package:estaciona_facil/assets/app_colors.dart';
 
+
+
 // AppBar modularizada
 PreferredSizeWidget customAppBar(BuildContext context) {
   return AppBar(
@@ -71,6 +73,16 @@ PreferredSizeWidget customAppBar(BuildContext context) {
                               onPressed: () {
                                 Navigator.pop(context);
                               },
+
+                          style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.corBotao,
+                          foregroundColor: Colors.white,
+                          fixedSize: Size(160, 50),
+                          elevation: 8,
+                          shadowColor: Colors.black,
+                        ),
+
+
                               child: const Text('Fechar'),
                             ),
                           ),
