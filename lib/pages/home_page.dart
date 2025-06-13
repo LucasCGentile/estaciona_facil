@@ -228,7 +228,7 @@ class _MyHomePageState extends State<HomePage> {
                         SizedBox(height: 16),
                         ElevatedButton(
                           onPressed: () {
-                            MainScreenState.of(context)?.setCurrentIndex(1);
+                            MainScreenState.of(context)?.setCurrentIndex(8);
                           },
                           style: ElevatedButton.styleFrom(
                             elevation: 8,

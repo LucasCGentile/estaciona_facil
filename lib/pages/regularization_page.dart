@@ -68,13 +68,13 @@ class _MyHomePageState extends State<RegularizationPage> {
               height: 280,
               margin: const EdgeInsets.only(bottom: 16),
               decoration: BoxDecoration(
-                color: Colors.grey.shade100,
-                borderRadius: BorderRadius.circular(16),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
-                    blurRadius: 4,
-                    offset: const Offset(0, 2),
+                    color: Colors.grey.withAlpha((0.3 * 255).round()),
+                    blurRadius: 5,
+                    offset: Offset(0, 2),
                   ),
                 ],
               ),

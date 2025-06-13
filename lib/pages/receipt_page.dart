@@ -92,6 +92,39 @@ class _MyHomePageState extends State<ReceiptPage> {
                               ),
                             ],
                           ),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Forma de pagamento:',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+
+                              Row(
+                                spacing: 5,
+                                children: [
+                                  Text(
+                                    'PIX',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.grey[600],
+                                    ),
+                                  ),
+
+                                  Icon(
+                                    Icons.pix,
+                                    color: Colors.grey[600],
+                                    weight: 2,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+
                         ],
                       ),
                     ),
@@ -173,6 +206,39 @@ class _MyHomePageState extends State<ReceiptPage> {
                               ),
                             ],
                           ),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Forma de pagamento:',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+
+                              Row(
+                                spacing: 5,
+                                children: [
+                                  Text(
+                                    'PIX',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.grey[600],
+                                    ),
+                                  ),
+
+                                  Icon(
+                                    Icons.pix,
+                                    color: Colors.grey[600],
+                                    weight: 2,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+
                         ],
                       ),
                     ),
@@ -254,6 +320,39 @@ class _MyHomePageState extends State<ReceiptPage> {
                               ),
                             ],
                           ),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Forma de pagamento:',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+
+                              Row(
+                                spacing: 5,
+                                children: [
+                                  Text(
+                                    'Crédito',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.grey[600],
+                                    ),
+                                  ),
+
+                                  Icon(
+                                    Icons.credit_card,
+                                    color: Colors.grey[600],
+                                    weight: 2,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+
                         ],
                       ),
                     ),
@@ -335,6 +434,39 @@ class _MyHomePageState extends State<ReceiptPage> {
                               ),
                             ],
                           ),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Forma de pagamento:',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+
+                              Row(
+                                spacing: 5,
+                                children: [
+                                  Text(
+                                    'Crédito',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.grey[600],
+                                    ),
+                                  ),
+
+                                  Icon(
+                                    Icons.credit_card,
+                                    color: Colors.grey[600],
+                                    weight: 2,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+
                         ],
                       ),
                     ),
@@ -416,6 +548,39 @@ class _MyHomePageState extends State<ReceiptPage> {
                               ),
                             ],
                           ),
+
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Forma de pagamento:',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.grey[600],
+                                ),
+                              ),
+
+                              Row(
+                                spacing: 5,
+                                children: [
+                                  Text(
+                                    'Crédito',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.grey[600],
+                                    ),
+                                  ),
+
+                                  Icon(
+                                    Icons.credit_card,
+                                    color: Colors.grey[600],
+                                    weight: 2,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+
                         ],
                       ),
                     ),

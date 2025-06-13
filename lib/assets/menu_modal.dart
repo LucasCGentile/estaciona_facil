@@ -67,7 +67,7 @@ class MenuModal extends StatelessWidget {
           buildMenuButton(
             context: context,
             icon: Icons.wallet,
-            label: 'Comprar Tickets',
+            label: 'Adicionar Saldo',
             pageIndex: 1,
           ),
           buildMenuButton(
