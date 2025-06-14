@@ -17,106 +17,7 @@ import 'package:estaciona_facil/assets/app_colors.dart';
 
 
 // AppBar modularizada
-PreferredSizeWidget customAppBar(BuildContext context) {
-  return AppBar(
-    backgroundColor: AppColors.corPrincipal,
-    automaticallyImplyLeading: false,
-    toolbarHeight: 75,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
-    ),
-    title: Row(
-      children: [
-        CircleAvatar(
-          radius: 24,
-          backgroundColor: Colors.white,
-          child: IconButton(
-            icon: Icon(Icons.person, color: AppColors.corPrincipal, size: 28),
-            onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-                ),
-                builder:
-                    (context) => Container(
-                      padding: const EdgeInsets.all(16),
-                      height: 300,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Center(
-                            child: Text(
-                              'Informações do Usuário',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 16),
-                          const ListTile(
-                            leading: Icon(Icons.password),
-                            title: Text('Alterar Senha'),
-                          ),
-                          const ListTile(
-                            leading: Icon(Icons.edit),
-                            title: Text('Editar Dados'),
-                          ),
-                          const ListTile(
-                            leading: Icon(Icons.delete),
-                            title: Text('Apagar Conta'),
-                          ),
-                          const Spacer(),
-                          Center(
-                            child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
 
-                          style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.corBotao,
-                          foregroundColor: Colors.white,
-                          fixedSize: Size(160, 50),
-                          elevation: 8,
-                          shadowColor: Colors.black,
-                        ),
-
-
-                              child: const Text('Fechar'),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-              );
-            },
-          ),
-        ),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Container(
-            height: 45,
-            decoration: BoxDecoration(
-              color: Colors.white70,
-              borderRadius: BorderRadius.circular(30),
-            ),
-            child: const TextField(
-              style: TextStyle(color: Colors.black),
-              decoration: InputDecoration(
-                hintText: 'O que você procura ?',
-                hintStyle: TextStyle(color: Colors.black),
-                prefixIcon: Icon(Icons.search, color: Colors.black),
-                border: InputBorder.none,
-                contentPadding: EdgeInsets.symmetric(vertical: 12),
-              ),
-            ),
-          ),
-        ),
-      ],
-    ),
-  );
-}
 
 // MainScreen
 class MainScreen extends StatefulWidget {
@@ -188,4 +89,115 @@ class MainScreenState extends State<MainScreen> {
       ),
     );
   }
+
+  PreferredSizeWidget customAppBar(BuildContext context) {
+  return AppBar(
+    backgroundColor: AppColors.corPrincipal,
+    automaticallyImplyLeading: false,
+    toolbarHeight: 75,
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
+    ),
+    title: Row(
+      children: [
+        CircleAvatar(
+          radius: 24,
+          backgroundColor: Colors.white,
+          child: IconButton(
+            icon: Icon(Icons.person, color: AppColors.corPrincipal, size: 28),
+            onPressed: () async {
+              var retorno = await showModalBottomSheet(
+                context: context,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+                ),
+                builder:
+                    (context) => Container(
+                      padding: const EdgeInsets.all(16),
+                      height: 300,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Center(
+                            child: Text(
+                              'Informações do Usuário',
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 16),
+                           ListTile(
+                            leading: Icon(Icons.password),
+                            title: Text('Alterar Senha'),
+                            onTap: () {
+                              Navigator.pop(context, 9);
+                           
+                            },
+                          ),
+                          ListTile(
+                            leading: Icon(Icons.edit),
+                            title: Text('Editar Dados'),
+                             onTap: () {
+                              Navigator.pop(context, 5);
+                           
+                            },
+                          ),
+                         
+                          const Spacer(),
+                          Center(
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+
+                          style: ElevatedButton.styleFrom(
+                          backgroundColor: AppColors.corBotao,
+                          foregroundColor: Colors.white,
+                          fixedSize: Size(160, 50),
+                          elevation: 8,
+                          shadowColor: Colors.black,
+                        ),
+
+
+                              child: const Text('Fechar'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+              );
+               
+               if (retorno == null)return;
+               setState(() {
+                  _currentIndex = retorno; // Atualiza o índice da página com o retorno do modal
+                });
+            },
+          ),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Container(
+            height: 45,
+            decoration: BoxDecoration(
+              color: Colors.white70,
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: const TextField(
+              style: TextStyle(color: Colors.black),
+              decoration: InputDecoration(
+                hintText: 'O que você procura ?',
+                hintStyle: TextStyle(color: Colors.black),
+                prefixIcon: Icon(Icons.search, color: Colors.black),
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.symmetric(vertical: 12),
+              ),
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
+}
 }
